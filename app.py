@@ -5,6 +5,8 @@ st.title("팻밀리")
 
 st.subheader("반려견 행복지도")
 
+
+
 #@title 라이브러리 및 모듈 불러오기
 # 분석 기본 라이브러리
 
@@ -17,8 +19,6 @@ import numpy as np
 # import matplotlib.pyplot as plt
 # %matplotlib inline
 # import seaborn as sns
-
-import streamlit as st
 
 #한글 폰트 처리
 # !sudo apt-get install -y fonts-nanum
