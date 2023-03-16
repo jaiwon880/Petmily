@@ -32,7 +32,7 @@ url = "https://github.com/whataLIN/sample_rp/raw/main"
 # 서울시 동물병원 파일 불러오기
 seoul_pet_hospital = pd.read_csv(url + '/data/PetHospital.csv', encoding = 'cp949')
 # 서울시 애견미용업장 파일 불러오기
-# seoul_pet_beauty = pd.read_excel(url + '/data/PetBeautyShop.xls') 
+seoul_pet_beauty = pd.read_excel(url + '/data/PetBeautyShop.xls') 
 # 서울시 애견위탁관리 파일 불러오기
 seoul_pet_consignment = pd.read_csv(url + '/data/PetHotel.csv')
 # seoul_pet_consignment = pd.read_csv(url + '/data/PetHotel.csv', encoding = 'cp949')
