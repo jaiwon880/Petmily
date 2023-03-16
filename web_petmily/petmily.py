@@ -61,72 +61,6 @@ seoul_park = pd.read_csv('web_petmily/서울시 주요 공원현황.csv', encodi
 seoul_pet_own = pd.read_csv('web_petmily/반려동물+유무+및+취득+경로_20230314161547.csv')
 
 
-
-col1,col2 = st.columns([1,1])
-# 공간을 2:3 으로 분할하여 col1과 col2라는 이름을 가진 컬럼을 생성
-
-with col1 :
-  # column 1 에 담을 내용
-  st.markdown("**:blue[동물 병원] 이용 순위**")
-  alt.Chart(sph_sort).mark_bar().encode(
-    x=sph_sort.index,
-    y='사업장명')
-#       fig = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
-#              color_continuous_scale='Blues',
-#              labels={'x': '자치구', 'y': '동물병원 수'},
-#              height=600)
-#   fig.update_layout(
-#         title='서울시 자치구별 동물병원 수',
-#         xaxis_title='',
-#         yaxis_title='동물병원 수',
-#         font=dict(size=18)
-#     )
-#   fig.show()
-  st.image("https://user-images.githubusercontent.com/71927533/225588437-0a7d6c29-27fa-48d9-b652-54573a4e35b6.png")
-  st.info('자치구별 동물 병원수 입니다.', icon="ℹ️")
-  
-  
-  st.markdown("**:blue[동물 미용업체] 이용 순위**")
-  st.image("https://user-images.githubusercontent.com/71927533/225588981-d31e33b5-12c5-4d9f-bbfb-6da3b511a800.png")
-  st.info('자치구별 동물 미용업체수 입니다.', icon="ℹ️")
-
-
-  st.markdown("**:blue[반려동물 보유 비율]**")
-  st.image("https://user-images.githubusercontent.com/71927533/225590064-1171e04b-455a-4308-92d5-9cf8495c1291.png")
-  st.info('자치구별 반려동물 보유비율입니다.', icon="ℹ️")
-
-
-
-  # # Text Area
-  # message = st.text_area("소개해 드린 추천 채널의 느낀점을 입력해 주세요", "이곳에 입력하세요.")
-  # if st.button("Submit", key='message'):
-  #   result = message.title()
-  #   st.success(result)
-
-
-with col2 :
-  # column 2 에 담을 내용
-  st.markdown("**:blue[동물 위탁시설] 이용 순위**")
-  st.image("https://user-images.githubusercontent.com/71927533/225590486-ad657a99-8baa-43cd-a474-b23882c96354.png")
-  st.info('자치구별 동물 위탁시설 수 입니다.', icon="ℹ️")
-  
-  
-  st.markdown("**:blue[공원 시설] 이용 순위**")
-  st.image("https://user-images.githubusercontent.com/71927533/225590467-a09340bf-ad2d-4674-8453-0b4447ff3d93.png")
-  st.info('자치구별 공원 시설 수 입니다.', icon="ℹ️")
-
-  st.markdown("**:blue[자치구별 종합] 순위**")
-  st.image("https://user-images.githubusercontent.com/71927533/225604387-ac259b04-2a73-48ee-8b3d-296f9cb8f65e.png")
-  st.info('자치구별 종합 순위 입니다.', icon="ℹ️")
-  
-
-
-
-
-# 데이터 출처 :
-
-"""# 서울시 동물병원"""
-
 #@title 서울시 동물병원 파일 불러오기
 sph = seoul_pet_hospital.copy()
 sph = sph.dropna(how='all')
@@ -177,17 +111,74 @@ sph_sort = sph_gu.sort_values(by=['사업장명'], ascending=False)
 sph_sort
 
 
-fig = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
-             color_continuous_scale='Blues',
-             labels={'x': '자치구', 'y': '동물병원 수'},
-             height=600)
-fig.update_layout(
-    title='서울시 자치구별 동물병원 수',
-    xaxis_title='',
-    yaxis_title='동물병원 수',
-    font=dict(size=18)
-)
-fig.show()
+a= alt.Chart(sph_sort).mark_bar().encode(
+    x=sph_sort.index,
+    y='사업장명')
+
+col1,col2 = st.columns([1,1])
+# 공간을 2:3 으로 분할하여 col1과 col2라는 이름을 가진 컬럼을 생성
+
+with col1 :
+  # column 1 에 담을 내용
+  st.markdown("**:blue[동물 병원] 이용 순위**")  
+  st.altair_chart(a, theme="streamlit", use_container_width=True)
+  
+  st.image("https://user-images.githubusercontent.com/71927533/225588437-0a7d6c29-27fa-48d9-b652-54573a4e35b6.png")
+  st.info('자치구별 동물 병원수 입니다.', icon="ℹ️")
+  
+  
+  st.markdown("**:blue[동물 미용업체] 이용 순위**")
+  st.image("https://user-images.githubusercontent.com/71927533/225588981-d31e33b5-12c5-4d9f-bbfb-6da3b511a800.png")
+  st.info('자치구별 동물 미용업체수 입니다.', icon="ℹ️")
+
+
+  st.markdown("**:blue[반려동물 보유 비율]**")
+  st.image("https://user-images.githubusercontent.com/71927533/225590064-1171e04b-455a-4308-92d5-9cf8495c1291.png")
+  st.info('자치구별 반려동물 보유비율입니다.', icon="ℹ️")
+
+
+
+  # # Text Area
+  # message = st.text_area("소개해 드린 추천 채널의 느낀점을 입력해 주세요", "이곳에 입력하세요.")
+  # if st.button("Submit", key='message'):
+  #   result = message.title()
+  #   st.success(result)
+
+
+with col2 :
+  # column 2 에 담을 내용
+  st.markdown("**:blue[동물 위탁시설] 이용 순위**")
+  st.image("https://user-images.githubusercontent.com/71927533/225590486-ad657a99-8baa-43cd-a474-b23882c96354.png")
+  st.info('자치구별 동물 위탁시설 수 입니다.', icon="ℹ️")
+  
+  
+  st.markdown("**:blue[공원 시설] 이용 순위**")
+  st.image("https://user-images.githubusercontent.com/71927533/225590467-a09340bf-ad2d-4674-8453-0b4447ff3d93.png")
+  st.info('자치구별 공원 시설 수 입니다.', icon="ℹ️")
+
+  st.markdown("**:blue[자치구별 종합] 순위**")
+  st.image("https://user-images.githubusercontent.com/71927533/225604387-ac259b04-2a73-48ee-8b3d-296f9cb8f65e.png")
+  st.info('자치구별 종합 순위 입니다.', icon="ℹ️")
+  
+
+
+
+
+# 데이터 출처 :
+
+
+
+# fig = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
+#              color_continuous_scale='Blues',
+#              labels={'x': '자치구', 'y': '동물병원 수'},
+#              height=600)
+# fig.update_layout(
+#     title='서울시 자치구별 동물병원 수',
+#     xaxis_title='',
+#     yaxis_title='동물병원 수',
+#     font=dict(size=18)
+# )
+# fig.show()
 
 """# 서울시 애견미용업장"""
 
