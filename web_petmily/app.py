@@ -8,64 +8,6 @@ import requests
 import pytz
 from streamlit.components.v1 import html
 
-
-def create_df():
-  # DF_URL
-  df_URL = "https://raw.githubusercontent.com/jaiwon880/Python_bd23_hjw/main/submission/jaiwon880/01_first_webapp/%EB%8F%99%EB%AC%BC%EC%9C%84%ED%83%81%EA%B4%80%EB%A6%AC%EC%97%85.csv"
-  # df을 읽어 오면서 df언네임 삭제
-  seoul_pet_consignment = pd.read_csv(df_URL).iloc[:, 1:]
-  # df인덱스 올림
-  seoul_pet_consignment.index += 1
-  # df 반환
-  return seoul_pet_consignment
-
-def create_df1():
-  # DF_URL
-  df_URL = "https://raw.githubusercontent.com/jaiwon880/Python_bd23_hjw/main/submission/jaiwon880/01_first_webapp/%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC%2B%EC%9C%A0%EB%AC%B4%2B%EB%B0%8F%2B%EC%B7%A8%EB%93%9D%2B%EA%B2%BD%EB%A1%9C_20230314161547.csv"
-  # df을 읽어 오면서 df언네임 삭제
-  seoul_pet_own = pd.read_csv(df_URL).iloc[:, 1:]
-  # df인덱스 올림
-  seoul_pet_own.index += 1
-  # df 반환
-  return seoul_pet_own
-
-def create_df2():
-  # DF_URL
-  df_URL = "https://raw.githubusercontent.com/jaiwon880/Python_bd23_hjw/main/submission/jaiwon880/01_first_webapp/%EB%B0%98%EB%A0%A4%EB%8F%99%EB%AC%BC%2B%EC%9C%A0%EB%AC%B4%2B%EB%B0%8F%2B%EC%B7%A8%EB%93%9D%2B%EA%B2%BD%EB%A1%9C_20230314161547.csv"
-  # df을 읽어 오면서 df언네임 삭제
-  seoul_park = pd.read_csv(df_URL).iloc[:, 1:]
-  # df인덱스 올림
-  seoul_park.index += 1
-  # df 반환
-  return seoul_park
-
-def create_df3():
-  # DF_URL
-  df_URL = "https://raw.githubusercontent.com/jaiwon880/Python_bd23_hjw/main/submission/jaiwon880/01_first_webapp/%EC%84%9C%EC%9A%B8%EC%8B%9C_%EB%8F%99%EB%AC%BC%EB%B3%91%EC%9B%90.csv"
-  # df을 읽어 오면서 df언네임 삭제
-  seoul_pet_hospital = pd.read_csv(df_URL).iloc[:, 1:]
-  # df인덱스 올림
-  seoul_pet_hospital.index += 1
-  # df 반환
-  return seoul_pet_hospital
-
-def create_df4():
-  # DF_URL
-  df_URL = "https://raw.githubusercontent.com/jaiwon880/Python_bd23_hjw/main/submission/jaiwon880/01_first_webapp/%EC%84%9C%EC%9A%B8%EC%8B%9C_%EB%8F%99%EB%AC%BC%EB%B3%91%EC%9B%90.csv"
-  # df을 읽어 오면서 df언네임 삭제
-  seoul_pet_beauty = pd.read_csv(df_URL).iloc[:, 1:]
-  # df인덱스 올림
-  seoul_pet_beauty.index += 1
-  # df 반환
-  return seoul_pet_beauty
-
-seoul_pet_hospital = pd.read_csv('jaiwon880/Petmily/web_petmily/서울시_동물병원.csv')
-sph = seoul_pet_hospital.copy()
-sph = Preprocess(sph)
-sph = sph.dropna(how='all')
-
-sph
-
 st.write(
     """
     ## 🐶 팻밀리  
