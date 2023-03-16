@@ -188,20 +188,23 @@ pet_have_df['data'] = pet_have_df['data'].astype('float')
 pet_have_df =pet_have_df.sort_values('data', inplace=True, ascending=False)
 
 
-pet_have2 = pet_have.groupby(spb["gu"]).count()[["data"]]
+pet_have_df = pet_have_df.groupby('gu').count().reset_index()
+pet_have_df = pet_have_df.sort_values(by=['data'], ascending=False)
 
-pet_have3 = pet_have2.sort_values(by=['data'], ascending=False)
-pet_have4 = pet_have.groupby('gu').count().reset_index()
-pet_have4 = pet_have4.sort_values(by=['data'], ascending=False)
-pet_have4
+pet_have_df = pet_have_df.groupby(pet_have_df["gu"]).count()[["data"]]
 
-bar_chart3 = alt.Chart(pet_have4).mark_bar(
+pet_have_df = pet_have_df.sort_values(by=['data'], ascending=False)
+pet_have_df = pet_have_df.groupby('gu').count().reset_index()
+pet_have_df = pet_have_df.sort_values(by=['data'], ascending=False)
+
+bar_chart3 = alt.Chart(pet_have_df).mark_bar(
 ).encode(
     x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
     y=alt.Y('data',axis=alt.Axis(title=''),sort='-y'),
     color=alt.Color('gu', scale=alt.Scale(scheme='darkgold'), legend=None)
 ).properties(
 )
+
 
 
 # 서울시 애견위탁관리 파일 불러오기
@@ -232,7 +235,13 @@ spc_gu = spc_gu.sort_values('data', inplace=True, ascending=False)
 spc_gu
 
 
-
+# bar_chart3 = alt.Chart(spc_gu).mark_bar(
+# ).encode(
+#     x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
+#     y=alt.Y('data',axis=alt.Axis(title=''),sort='-y'),
+#     color=alt.Color('gu', scale=alt.Scale(scheme='darkgold'), legend=None)
+# ).properties(
+# )
 
 
 
@@ -253,7 +262,7 @@ with col1 :
 
   # lightgreyteal
   st.markdown("**:blue[반려동물 보유 비율]**")
-  st.altair_chart(bar_chart3, use_container_width=True)
+#   st.altair_chart(bar_chart3, use_container_width=True)
   st.info('자치구별 반려동물 보유비율입니다.', icon="ℹ️")
 
 
