@@ -13,7 +13,7 @@ import numpy as np
 
 # 시각화
 import matplotlib.pyplot as plt
-%matplotlib inline
+# %matplotlib inline
 import seaborn as sns
 import streamlit as st
 
