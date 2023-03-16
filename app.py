@@ -12,9 +12,9 @@ import pandas as pd
 import numpy as np
 
 # 시각화
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
+# import matplotlib
+# matplotlib.use('Agg')
+# import matplotlib.pyplot as plt
 # %matplotlib inline
 # import seaborn as sns
 import streamlit as st
