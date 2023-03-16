@@ -370,7 +370,6 @@ result1 = result["합계"].sort_values(ascending=False)
 
 result1 = result["합계"].sort_values(ascending=False)
 result1_df = result1.to_frame(name='합계').reset_index().rename(columns={'index': '자치구'})
-result1_df
 
 # fig = px.bar(result1_df, x='C', y='합계', color='합계',
 #              color_continuous_scale='greys',
