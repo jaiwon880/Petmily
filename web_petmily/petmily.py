@@ -45,8 +45,8 @@ gu_dict = {
           "강북구":'https://user-images.githubusercontent.com/102681611/225593468-a0255c87-c861-4716-8774-818d305fcca1.png',
 "동대문구":'https://user-images.githubusercontent.com/126433780/225597051-414a4745-ad14-48a8-badc-e75fd20ca4e5.png'}
 
-st.sidebar.title('서울시 자치구를 선택해주세요👇')
-choice = st.sidebar.selectbox("자치구 선택",
+st.sidebar.title('자치구를 선택해주세요! 👇')
+choice = st.sidebar.selectbox(
 ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구","중랑구"]
 )
 st.image(gu_dict[choice], use_column_width=True)
@@ -69,9 +69,6 @@ seoul_pet_own = pd.read_csv('web_petmily/반려동물+유무+및+취득+경로_2
 """# 서울시 동물병원"""
 
 #@title 서울시 동물병원 파일 불러오기
-
-seoul_pet_hospital
-
 sph = seoul_pet_hospital.copy()
 sph = sph.dropna(how='all')
 
@@ -82,12 +79,8 @@ cols1 = ["총직원수", "인허가일자", "인허가취소일자","상세영�
 for col in cols1:
     del sph[col]
 
-sph
-
 #@title '소재지전체주소' 컬럼에서 '서울'을 포함한 데이터만 필터링
 sph = sph[sph['소재지전체주소'].str.contains('서울', na=False)]
-
-sph
 
 import re
 
@@ -121,45 +114,42 @@ sph_list = ["강서구",
 pattern = '|'.join(sph_list)
 sph['소재지전체주소'] = sph['소재지전체주소'].str.extract(f'({pattern})', flags=re.IGNORECASE)
 
-sph
-
 sph_gu=(sph.groupby(sph['소재지전체주소']).count())[["사업장명"]]
-sph_gu
 
 sph_sort = sph_gu.sort_values(by=['사업장명'], ascending=False)
 sph_sort
 
-# # 그라데이션 색상을 위한 컬러 맵 생성
-# cmap = plt.get_cmap('winter')
+# 그라데이션 색상을 위한 컬러 맵 생성
+cmap = plt.get_cmap('winter')
 
-# # 데이터프레임에서 값을 가져와서 바차트를 그립니다.
-# fig, ax = plt.subplots(figsize = (20, 10))
-# bars = ax.bar(sph_sort.index, sph_sort['사업장명'], align='center')
+# 데이터프레임에서 값을 가져와서 바차트를 그립니다.
+fig, ax = plt.subplots(figsize = (20, 10))
+bars = ax.bar(sph_sort.index, sph_sort['사업장명'], align='center')
 
-# # 그라데이션 색상 적용
-# for i, bar in enumerate(bars):
-#     bar.set_color(cmap(i / len(sph_sort.index)))
+# 그라데이션 색상 적용
+for i, bar in enumerate(bars):
+    bar.set_color(cmap(i / len(sph_sort.index)))
 
-# # x축 레이블 설정
-# plt.xticks(rotation = 45, fontsize = 15)
+# x축 레이블 설정
+plt.xticks(rotation = 45, fontsize = 15)
 
-# # 그래프 타이틀 설정
-# plt.title('서울시 자치구별 동물병원 수')
+# 그래프 타이틀 설정
+plt.title('서울시 자치구별 동물병원 수')
 
-# # 그래프 출력
-# plt.show()
+# 그래프 출력
+plt.show()
 
-fig = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
-             color_continuous_scale='Blues',
-             labels={'x': '자치구', 'y': '동물병원 수'},
-             height=600)
-fig.update_layout(
-    title='서울시 자치구별 동물병원 수',
-    xaxis_title='',
-    yaxis_title='동물병원 수',
-    font=dict(size=18)
-)
-fig.show()
+# fig = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
+#              color_continuous_scale='Blues',
+#              labels={'x': '자치구', 'y': '동물병원 수'},
+#              height=600)
+# fig.update_layout(
+#     title='서울시 자치구별 동물병원 수',
+#     xaxis_title='',
+#     yaxis_title='동물병원 수',
+#     font=dict(size=18)
+# )
+# fig.show()
 
 """# 서울시 애견미용업장"""
 
