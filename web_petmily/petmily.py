@@ -123,11 +123,20 @@ bar_chart = alt.Chart(sph_sort3).mark_bar(
 ).properties(
 )
 
+# 애견 미용 차트
+bar_chart2 = alt.Chart(spb_sort).mark_bar(
+).encode(
+    x=alt.X('소재지',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
+    y=alt.Y('업체명',axis=alt.Axis(title='')),
+    color=alt.Color('소재지', scale=alt.Scale(scheme='darkgold'), legend=None)
+).properties(
+)
+
 # Streamlit 앱 구성
 
 
 
-col1,col2 = st.columns([2,2])
+col1,col2 = st.columns([1,1])
 # 공간을 2:3 으로 분할하여 col1과 col2라는 이름을 가진 컬럼을 생성
 
 with col1 :
@@ -138,7 +147,7 @@ with col1 :
   
   
   st.markdown("**:blue[동물 미용업체] 이용 순위**")
-  st.image("https://user-images.githubusercontent.com/71927533/225588981-d31e33b5-12c5-4d9f-bbfb-6da3b511a800.png")
+  st.altair_chart(bar_chart2, use_container_width=True)
   st.info('자치구별 동물 미용업체수 입니다.', icon="ℹ️")
 
 
@@ -213,17 +222,6 @@ spb2 = spb.groupby(spb["소재지"]).count()[["업체명"]]
 spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
 spb_sort
 
-# fig = px.bar(spb_sort, x=spb_sort.index, y='업체명', color='업체명',
-#              color_continuous_scale='plotly3',
-#              labels={'x': '자치구', 'y': '애견 미용실 수'},
-#              height=600)
-# fig.update_layout(
-#     title='서울시 자치구별 애견 미용실 수',
-#     xaxis_title='',
-#     yaxis_title='애견 미용실 수',
-#     font=dict(size=18)
-# )
-# fig.show()
 
 """# 서울시 애견 위탁관리"""
 
