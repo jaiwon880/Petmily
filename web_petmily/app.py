@@ -1,10 +1,5 @@
 # streamlit 라이브러리 호출
 import streamlit as st
-import numpy as np
-import pandas as pd 
-import seaborn as sns
-import altair as alt         
-petCon = pd.read_csv('../data/동물위탁관리업.csv')
 
 # 마크다운을 기반으로 한 꾸미기 기능 작동
 # 가장 간단한 웹 사이트를 만드는 방법
@@ -20,34 +15,7 @@ st.write(
     """
 )
 
-import plotly.express as px
-import streamlit as st
-
-df = px.data.gapminder()
-
-fig = px.scatter(
-    df.query("year==2007"),
-    x="gdpPercap",
-    y="lifeExp",
-    size="pop",
-    color="continent",
-    hover_name="country",
-    log_x=True,
-    size_max=60,
-)
-
-tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
-with tab1:
-    # Use the Streamlit theme.
-    # This is the default. So you can also omit the theme argument.
-    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
-with tab2:
-    # Use the native Plotly theme.
-    st.plotly_chart(fig, theme=None, use_container_width=True)
-
-
 st.sidebar.title('시간 순삭 유튜브 추천👇')
-
 add_selectbox = st.sidebar.selectbox("주인장 추천 채널",
  ["지식한입", "ITSub잇섭", "느낌적인느낌","호갱구조대", "너 진짜 똑독하다", "슈카월드"])
 
