@@ -127,7 +127,7 @@ bar_chart = alt.Chart(sph_sort2).mark_bar(
         stops=[alt.GradientStop(color='white', offset=0),
                alt.GradientStop(color='darkgreen', offset=1)]
 
-).properties(
+)).properties(
 )
 
 # Streamlit 앱 구성
