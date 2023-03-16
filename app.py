@@ -1,5 +1,5 @@
 # # streamlit 라이브러리 호출
-# import streamlit as st
+import streamlit as st
 # from PIL import Image
 # # import graph.py
 
