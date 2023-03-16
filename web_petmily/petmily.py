@@ -108,7 +108,6 @@ sph['소재지전체주소'] = sph['소재지전체주소'].str.extract(f'({patt
 sph_gu=(sph.groupby(sph['소재지전체주소']).count())[["사업장명"]]
 
 sph_sort = sph_gu.sort_values(by=['사업장명'], ascending=False)
-sph_sort
 
 
 # 소재지 전체주소 별 사업장 수 계산
