@@ -15,11 +15,6 @@ Original file is located at
 import pandas as pd
 import numpy as np
 
-# 시각화
-import matplotlib.pyplot as plt
-# %matplotlib inline
-import seaborn as sns
-
 
 # 서울시 동물병원 파일 불러오기
 seoul_pet_hospital = pd.read_csv('서울시_동물병원.csv', encoding = 'cp949')
