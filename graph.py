@@ -16,7 +16,7 @@ import numpy as np
 # !rm ~/.cache/matplotlib -rf
 
 #한글 폰트를 나눔폰트로 설정
-plt.rc('font', family='NanumBarunGothic')
+# plt.rc('font', family='NanumBarunGothic')
 
 #@title 파일 불러오기
 
@@ -108,7 +108,7 @@ def seoulPetHospital():
     sph_sort = sph_gu.sort_values(by=['사업장명'], ascending=False)
 
     st.bar_chart(sph_sort, x=ph_sort.index, y=sph_sort['사업장명'], width=20, height=10, use_container_width=True)
-    
+
     # #==============
     # #그래프그리기
     # # 그라데이션 색상을 위한 컬러 맵 생성
