@@ -134,7 +134,7 @@ col1,col2 = st.columns([1,1])
 with col1 :
   # column 1 에 담을 내용
   st.markdown("**:blue[동물 병원] 이용 순위**")
-  st.altair_chart(bar_chart, use_container_width=True)
+  st.altair_chart(bar_chart, use_container_width=False)
   st.image("https://user-images.githubusercontent.com/71927533/225588437-0a7d6c29-27fa-48d9-b652-54573a4e35b6.png")
   st.info('자치구별 동물 병원수 입니다.', icon="ℹ️")
   
