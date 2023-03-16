@@ -19,13 +19,13 @@ import numpy as np
 # 서울시 동물병원 파일 불러오기
 seoul_pet_hospital = pd.read_csv('web_petmily/서울시_동물병원.csv', encoding = 'cp949')
 # 서울시 애견미용업장 파일 불러오기
-seoul_pet_beauty = pd.read_excel('서울시 애견미용업장.xls')
+seoul_pet_beauty = pd.read_excel('web_petmily/서울시 애견미용업장.csv')
 # 서울시 애견위탁관리 파일 불러오기
-seoul_pet_consignment = pd.read_csv('동물위탁관리업.csv')
+seoul_pet_consignment = pd.read_csv('web_petmily/동물위탁관리업.csv')
 # 서울시 주요 공원 현황 파일 불러오기
-seoul_park = pd.read_csv('서울시 주요 공원현황.csv', encoding = 'cp949')
+seoul_park = pd.read_csv('web_petmily/서울시 주요 공원현황.csv', encoding = 'cp949')
 # 반려동물 유무 비율 보유 파일 불러오기
-seoul_pet_own = pd.read_csv('반려동물+유무+및+취득+경로_20230314161547.csv')
+seoul_pet_own = pd.read_csv('web_petmily/반려동물+유무+및+취득+경로_20230314161547.csv')
 
 
 # 데이터 출처 :
