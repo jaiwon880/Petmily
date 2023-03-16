@@ -14,7 +14,7 @@ import numpy as np
 # 시각화
 # import matplotlib.pyplot as plt
 # %matplotlib inline
-import seaborn as sns
+# import seaborn as sns
 import streamlit as st
 
 #한글 폰트 처리
