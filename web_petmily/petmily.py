@@ -7,9 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1mkD-IIcx2E1f7rz9vXQkWsk8Ybwx3tGY
 """
 
-from google.colab import drive
-drive.mount('/content/drive')
-
 """# 반려견 데이터 시각화"""
 
 # Commented out IPython magic to ensure Python compatibility.
