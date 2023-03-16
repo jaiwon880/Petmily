@@ -25,7 +25,7 @@ st.write(
 )
 
 
-st.bar_chart(data=petCon, *, x="소재지전체주소", y="개방서비스명", use_container_width=True)
+st.bar_chart(data=petCon, x="소재지전체주소", y="개방서비스명", use_container_width=True)
 
 
 st.sidebar.title('시간 순삭 유튜브 추천👇')
