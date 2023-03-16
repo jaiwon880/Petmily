@@ -162,26 +162,32 @@ bar_chart2 = alt.Chart(spb_sort).mark_bar(
 
 # """# 반려동물 유무 비율"""
 
-# CSV 파일 읽어오기
-# pet_have = pd.read_csv('반려동물+유무+및+취득+경로_20230314161547.csv')
+#CSV 파일 읽어오기
+pet_have = pd.read_csv('반려동물+유무+및+취득+경로_20230314161547.csv')
 
-# # 특정열에 특정값을 가진 행 추출하기
-# pet_have2 = pet_have[pet_have['구분별(1)'].str.contains("지역소분류")]
+# 특정열에 특정값을 가진 행 추출하기
+pet_have2 = pet_have[pet_have['구분별(1)'].str.contains("지역소분류")]
 
-# # 추출된 데이터를 새로운 CSV 파일로 저장하기
-# pet_have2.to_csv('반려동물 유무.csv', index=False)
+# 추출된 데이터를 새로운 CSV 파일로 저장하기
+pet_have2.to_csv('반려동물 유무.csv', index=False)
 
 
-# pet_have_dict = dict(zip(pet_have2['구분별(2)'], pet_have2['2021']))
-# pet_have_dict2 = copy.deepcopy(pet_have_dict)
-# pet_have_dict_sorted_items = sorted(pet_have_dict2.items(), key=lambda x: x[1], reverse=True)
-# pet_have_dict_sorted = dict(pet_have_dict_sorted_items)
+pet_have_dict = dict(zip(pet_have2['구분별(2)'], pet_have2['2021']))
+pet_have_dict2 = copy.deepcopy(pet_have_dict)
+pet_have_dict_sorted_items = sorted(pet_have_dict2.items(), key=lambda x: x[1], reverse=True)
+pet_have_dict_sorted = dict(pet_have_dict_sorted_items)
 
-# pet_have_df = pd.DataFrame(pet_have_dict_sorted.items(), columns=['gu', 'data'])
-# pet_have_df['data'] = pet_have_df['data'].astype('float')
-# pet_have_df =pet_have_df.sort_values('data', inplace=True, ascending=False)
+pet_have_df = pd.DataFrame(pet_have_dict_sorted.items(), columns=['gu', 'data'])
+pet_have_df['data'] = pet_have_df['data'].astype('float')
+pet_have_df =pet_have_df.sort_values('data', inplace=True, ascending=False)
 
-# bar_chart3 = alt.Chart(pet_have_df).mark_bar(
+ph1 = pet_have.groupby(pet_have["소재지전체주소"]).count()[["업체명"]]
+ph1 = ph1.sort_values(by=['업체명'], ascending=False)
+pet_have1 = pet_have.groupby('소재지전체주소').count().reset_index()
+pet_have1 = pet_have1.sort_values(by=['업체명'], ascending=False)
+pet_have1
+
+# bar_chart3 = alt.Chart(pet_have1).mark_bar(
 # ).encode(
 #     x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
 #     y=alt.Y('data',axis=alt.Axis(title=''),sort='-y'),
