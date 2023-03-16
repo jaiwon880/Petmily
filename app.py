@@ -15,7 +15,7 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-%matplotlib inline
+# %matplotlib inline
 # import seaborn as sns
 import streamlit as st
 
