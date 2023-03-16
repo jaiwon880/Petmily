@@ -54,7 +54,7 @@ seoul_pet_hospital = pd.read_csv('web_petmily/서울시_동물병원.csv', encod
 # 서울시 애견미용업장 파일 불러오기
 seoul_pet_beauty = pd.read_csv('web_petmily/서울시 애견미용업장.csv')
 # 서울시 애견위탁관리 파일 불러오기
-seoul_pet_consignment = pd.read_csv('web_petmily/동물위탁관리업.csv')
+seoul_pet_con = pd.read_csv('web_petmily/동물위탁관리업.csv')
 # 서울시 주요 공원 현황 파일 불러오기
 seoul_park = pd.read_csv('web_petmily/서울시 주요 공원현황.csv', encoding = 'cp949')
 # 반려동물 유무 비율 보유 파일 불러오기
@@ -124,6 +124,7 @@ bar_chart = alt.Chart(sph_sort3).mark_bar(
 ).properties(
 )
 
+
 #@title 서울시 애견미용업장 파일 불러오기
 # 번호, 구분, 업체명, 소재지
 
@@ -158,11 +159,45 @@ bar_chart2 = alt.Chart(spb_sort).mark_bar(
 ).encode(
     x=alt.X('소재지',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
     y=alt.Y('업체명',axis=alt.Axis(title=''), sort='-y'),
-    color=alt.Color('소재지', scale=alt.Scale(scheme='darkgold'), legend=None)
+    color=alt.Color('소재지', scale=alt.Scale(scheme='pinkyellowgreen'), legend=None)
 ).properties(
 )
 
-# Streamlit 앱 구성
+
+# 서울시 애견위탁관리 파일 불러오기
+# 번호, 구분(위탁관리 포함된 문자만), 업체명, 소재지
+
+
+
+spc = seoul_pet_con.groupby([seoul_pet_con["개방서비스명"],seoul_pet_con["소재지전체주소"]])
+spc2 = spc[["소재지전체주소"]].count().rename(columns={"소재지전체주소": "개수"})
+
+
+dict1 = spc2.iloc[1:].loc[:,'개수'].reset_index(level=0, drop=True).to_dict()
+dict2 = copy.deepcopy(dict1)
+dict2_keys_list = list(dict2.keys())
+dict2_values_list = list(dict2.values())
+dict2_keys_list2 = [x + "구" for x in dict2_keys_list]
+dict2_keys_list3 = [x.replace("서울특별시", "") for x in dict2_keys_list2]
+
+done_dict = dict(zip(dict2_keys_list3, dict2_values_list))
+
+# 정렬
+sorted_items = sorted(done_dict.items(), key=lambda x: x[1], reverse=True)
+sorted_done_dict = dict(sorted_items)
+
+spc_gu = pd.DataFrame(sorted_done_dict.items(), columns=['gu', 'data'])
+spc_gu['data'] = spc_gu['data'].astype('float')
+spc_gu = spc_gu.sort_values('data', inplace=True, ascending=False)
+
+bar_chart3 = alt.Chart(spc_gu).mark_bar(
+).encode(
+    x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
+    y=alt.Y('data',axis=alt.Axis(title=''),sort='-y'),
+    color=alt.Color('gu', scale=alt.Scale(scheme='darkgold'), legend=None)
+).properties(
+)
+
 
 
 
@@ -180,9 +215,9 @@ with col1 :
   st.altair_chart(bar_chart2, use_container_width=True)
   st.info('자치구별 동물 미용업체수 입니다.', icon="ℹ️")
 
-
+  # lightgreyteal
   st.markdown("**:blue[반려동물 보유 비율]**")
-  st.image("https://user-images.githubusercontent.com/71927533/225590064-1171e04b-455a-4308-92d5-9cf8495c1291.png")
+  st.altair_chart(bar_chart3, use_container_width=True)
   st.info('자치구별 반려동물 보유비율입니다.', icon="ℹ️")
 
 
@@ -209,71 +244,11 @@ with col2 :
   st.image("https://user-images.githubusercontent.com/71927533/225604387-ac259b04-2a73-48ee-8b3d-296f9cb8f65e.png")
   st.info('자치구별 종합 순위 입니다.', icon="ℹ️")
   
-
-
-
-
 # 데이터 출처 :
 
 
 
-# fig = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
-#              color_continuous_scale='Blues',
-#              labels={'x': '자치구', 'y': '동물병원 수'},
-#              height=600)
-# fig.update_layout(
-#     title='서울시 자치구별 동물병원 수',
-#     xaxis_title='',
-#     yaxis_title='동물병원 수',
-#     font=dict(size=18)
-# )
-# fig.show()
 
-
-
-
-"""# 서울시 애견 위탁관리"""
-
-# 서울시 애견위탁관리 파일 불러오기
-# 번호, 구분(위탁관리 포함된 문자만), 업체명, 소재지
-
-seoul_pet_con = pd.read_csv("data/동물위탁관리업.csv")
-
-spc = seoul_pet_con.groupby([seoul_pet_con["개방서비스명"],seoul_pet_con["소재지전체주소"]])
-spc2 = spc[["소재지전체주소"]].count().rename(columns={"소재지전체주소": "개수"})
-
-
-dict1 = spc2.iloc[1:].loc[:,'개수'].reset_index(level=0, drop=True).to_dict()
-dict2 = copy.deepcopy(dict1)
-dict2_keys_list = list(dict2.keys())
-dict2_values_list = list(dict2.values())
-dict2_keys_list2 = [x + "구" for x in dict2_keys_list]
-dict2_keys_list3 = [x.replace("서울특별시", "") for x in dict2_keys_list2]
-
-done_dict = dict(zip(dict2_keys_list3, dict2_values_list))
-
-# 정렬
-sorted_items = sorted(done_dict.items(), key=lambda x: x[1], reverse=True)
-sorted_done_dict = dict(sorted_items)
-
-spc_gu = pd.DataFrame(sorted_done_dict.items(), columns=['gu', 'data'])
-spc_gu['data'] = spc_gu['data'].astype('float')
-spc_gu.sort_values('data', inplace=True, ascending=False)
-
-
-# fig = px.bar(spc_gu, x='gu', y='data', color='data',
-#              color_continuous_scale='Brwnyl',
-#              labels={'gu': '자치구', 'data': '반려동물 위탁 업체 수'},
-#              height=600)
-# fig.update_layout(
-#     title='서울시 자치구별 반려동물 위탁 업체 수',
-#     xaxis_title='',
-#     yaxis_title='반려동물 위탁 업체 수',
-#     font=dict(size=18)
-# )
-# fig.show()
-
-"""# 공원"""
 
 # 서울시 주요 공원 현황 파일 불러오기
 # 연번, 공원명, 공원개요("맑은 공기"), 면적, 주요 시설, 주요 식물, 공원주소, 관리부서, 전화번호, 바로가기
