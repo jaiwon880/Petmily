@@ -45,6 +45,13 @@ choice = st.sidebar.selectbox("자치구 선택",
 st.image(gu_dict[choice], use_column_width=True)
 
 
+# Text Area
+message = st.text_area("소개해 드린 추천 채널의 느낀점을 입력해 주세요", "이곳에 입력하세요.")
+if st.button("Submit", key='message'):
+  result = message.title()
+  st.success(result)
+
+
 # tmp_df = df[df['species']== add_selectbox]
 # st.table(tmp_df.head())
 
