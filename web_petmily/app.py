@@ -6,7 +6,8 @@ st.title("팻밀리")
 
 st.subheader("반려견 행복지도")
 
-pg.seoulPetHospital()
+st.write(pg.seoulPetHospital())
+
 
 #==========================================================
 

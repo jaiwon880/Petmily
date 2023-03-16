@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 %matplotlib inline
 import seaborn as sns
+imoprt streamlit as st
 
 #한글 폰트 처리
 !sudo apt-get install -y fonts-nanum
@@ -29,6 +30,32 @@ seoul_pet_consignment = pd.read_csv('data/동물위탁관리업.csv', encoding =
 seoul_park = pd.read_csv('data/서울시 주요 공원현황.csv', encoding = 'cp949')
 # 반려동물 유무 비율 보유 파일 불러오기
 seoul_pet_own = pd.read_csv('data/반려동물+유무+및+취득+경로_20230314161547.csv')
+
+
+def drawGraph(X, Y, title, colormap):
+
+    # 그라데이션 색상을 위한 컬러 맵 생성
+    cmap = plt.get_cmap(colormap)
+
+    # 데이터프레임에서 값을 가져와서 바차트를 그립니다.
+    fig, ax = plt.subplots(figsize = (20, 10))
+
+    bars = ax.bar(x, y, align='center')
+
+    # 그라데이션 색상 적용
+    for i, bar in enumerate(bars):
+        bar.set_color(cmap(i / len(X)))
+
+    # x축 레이블 설정
+    plt.xticks(rotation = 45, fontsize = 15)
+
+    # 그래프 타이틀 설정
+    plt.title('title')
+
+    # 그래프 출력
+    plt.show()
+
+
 
 
 #동물병원 그래프
@@ -80,6 +107,8 @@ def seoulPetHospital():
     sph_gu=(sph.groupby(sph['소재지전체주소']).count())[["사업장명"]]
     sph_sort = sph_gu.sort_values(by=['사업장명'], ascending=False)
 
+    #==============
+    #그래프그리기
     # 그라데이션 색상을 위한 컬러 맵 생성
     cmap = plt.get_cmap('winter')
 
@@ -191,10 +220,9 @@ def seoulPark():
     # 연번, 공원명, 공원개요("맑은 공기"), 면적, 주요 시설, 주요 식물, 공원주소, 관리부서, 전화번호, 바로가기
 
     def change_addr(index, new_addr):
-    park_info.loc[index, '공원주소'] = new_addr
+        park_info.loc[index, '공원주소'] = new_addr
 
     park_info=seoul_park[["연번","공원명","공원주소"]].copy()
-
     seoul_not_in_addr = park_info[park_info['공원주소'].apply(lambda x: '서울특별시' not in x)]
 
     change_addr(129, "서울특별시 노원구 공릉2동 산 82-2")
@@ -203,7 +231,7 @@ def seoulPark():
     park_info.reset_index(inplace=True)
 
     for idx, addr in enumerate(park_info["공원주소"]):
-    park_info['공원주소'][idx]=list(str(addr).split(" "))[1]
+        park_info['공원주소'][idx]=list(str(addr).split(" "))[1]
 
     park_info['공원주소'] = park_info['공원주소'].apply(lambda x: ' '.join(x))
 
