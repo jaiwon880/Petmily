@@ -118,8 +118,10 @@ sph_sort2 = sph.groupby('소재지전체주소').count().reset_index().sort_valu
 # 알테어 바 차트 생성
 bar_chart = alt.Chart(sph_sort2).mark_bar(
 ).encode(
-    x=alt.X('소재지전체주소', axis=alt.Axis(title='소재지 전체주소')),
-    y=alt.Y('사업장명', axis=alt.Axis(title='사업장명 갯수')),
+    x=alt.X('소재지전체주소'),
+    y=alt.Y('사업장명'),
+    y=alt.Order('사업장명', sort='descending'),
+    fontSize=10
     color=alt.Color('소재지전체주소', scale=alt.Scale(scheme='darkblue'), legend=None)
 ).properties(
 )
