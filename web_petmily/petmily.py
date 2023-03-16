@@ -189,14 +189,14 @@ sorted_done_dict = dict(sorted_items)
 spc_gu = pd.DataFrame(sorted_done_dict.items(), columns=['gu', 'data'])
 spc_gu['data'] = spc_gu['data'].astype('float')
 spc_gu = spc_gu.sort_values('data', inplace=True, ascending=False)
-
-bar_chart3 = alt.Chart(spc_gu).mark_bar(
-).encode(
-    x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
-    y=alt.Y('data',axis=alt.Axis(title=''),sort='-y'),
-    color=alt.Color('gu', scale=alt.Scale(scheme='darkgold'), legend=None)
-).properties(
-)
+spc_gu
+# bar_chart3 = alt.Chart(spc_gu).mark_bar(
+# ).encode(
+#     x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
+#     y=alt.Y('data',axis=alt.Axis(title=''),sort='-y'),
+#     color=alt.Color('gu', scale=alt.Scale(scheme='darkgold'), legend=None)
+# ).properties(
+# )
 
 
 
