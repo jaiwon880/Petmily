@@ -150,7 +150,7 @@ sph_sort3 = sph_sort2.sort_values(by=['사업장명'], ascending=False)
 spb2 = sph.groupby(sph["소재지"]).count()[["업체명"]]
 
 spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
-spb_sort = spb.groupby('소재지').count().reset_index()
+spb_sort = spb_sort.groupby('소재지').count().reset_index()
 spb_sort = spb_sort.sort_values(by=['업체명'], ascending=False)
 
 
