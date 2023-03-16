@@ -116,10 +116,17 @@ sph_sort2 = sph.groupby('소재지전체주소').count().reset_index()
 sph_sort = sph_sort2.sort_values(by=['사업장명'], ascending=False)
 
 # 알테어 바 차트 생성
-bar_chart = alt.Chart(sph_sort2).mark_bar().encode(
+bar_chart = alt.Chart(sph_sort2).mark_bar(
+    
+).encode(
     x=alt.X('소재지전체주소', axis=alt.Axis(title='소재지 전체주소')),
     y=alt.Y('사업장명', axis=alt.Axis(title='사업장명 갯수')),
-    color=alt.Color('소재지전체주소', scale=alt.Scale(scheme='dark2'), legend=None)
+    #olor=alt.Color('소재지전체주소', scale=alt.Scale(scheme='dark2'), legend=None)
+    color=alt.Gradient(
+        gradient='소재지전체주소',
+        stops=[alt.GradientStop(color='white', offset=0),
+               alt.GradientStop(color='darkgreen', offset=1)]
+
 ).properties(
 )
 
