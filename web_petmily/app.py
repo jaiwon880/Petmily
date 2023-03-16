@@ -1,7 +1,5 @@
 import streamlit as st
 import numpy as np
-from plotly.subplots import make_subplots
-import plotly.graph_objs as go
 import pandas as pd
 import requests
 import pytz
