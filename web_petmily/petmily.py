@@ -23,13 +23,6 @@ import matplotlib.pyplot as plt
 # %matplotlib inline
 import seaborn as sns
 
-#@title 한글 폰트 처리
-!sudo apt-get install -y fonts-nanum
-!sudo fc-cache -fv
-!rm ~/.cache/matplotlib -rf
-
-#@title 한글 폰트를 나눔폰트로 설정
-plt.rc('font', family='NanumBarunGothic')
 
 cd drive/My Drive/팀1
 
