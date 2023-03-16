@@ -386,8 +386,8 @@ result1_df
 
 """## 방사형 차트"""
 
-result2 = result[['동물병원순위', '동물미용업체순위', '위탁 업체 수',"보유 비율 순위","공원순위"]]
-result2
+# result2 = result[['동물병원순위', '동물미용업체순위', '위탁 업체 수',"보유 비율 순위","공원순위"]]
+# result2
 
 # 데이터 프레임 생성
 # df = pd.DataFrame(result2, index=address)
