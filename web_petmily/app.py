@@ -1,18 +1,11 @@
-# streamlit 라이브러리 호출
 import streamlit as st
-
-# 마크다운을 기반으로 한 꾸미기 기능 작동
-# 가장 간단한 웹 사이트를 만드는 방법
-
-# streamlit 라이브러리 호출
-import streamlit as st
-
-# 마크다운을 기반으로 한 꾸미기 기능 작동
-# 가장 간단한 웹 사이트를 만드는 방법
-
+import numpy as np
+import matplotlib.pyplot as plt
+import plotly.express as px
+from plotly.subplots import make_subplots
+import plotly.graph_objs as go
 import pandas as pd
 import requests
-from datetime import datetime
 import pytz
 from streamlit.components.v1 import html
 
@@ -67,7 +60,7 @@ def create_df4():
   # df 반환
   return seoul_pet_beauty
 
-seoul_pet_hospital = pd.read_csv('https://raw.githubusercontent.com/jaiwon880/Python_bd23_hjw/main/submission/jaiwon880/01_first_webapp/%EC%84%9C%EC%9A%B8%EC%8B%9C_%EB%8F%99%EB%AC%BC%EB%B3%91%EC%9B%90.csv')
+seoul_pet_hospital = pd.read_csv('jaiwon880/Petmily/web_petmily/서울시_동물병원.csv')
 sph = seoul_pet_hospital.copy()
 sph = Preprocess(sph)
 sph = sph.dropna(how='all')
