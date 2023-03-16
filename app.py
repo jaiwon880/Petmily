@@ -28,16 +28,17 @@ import streamlit as st
 #한글 폰트를 나눔폰트로 설정
 # plt.rc('font', family='NanumBarunGothic')
 
+url = "https://github.com/whataLIN/sample_rp/raw/main"
 # 서울시 동물병원 파일 불러오기
-seoul_pet_hospital = pd.read_csv('data/PetHospital.csv', encoding = 'cp949')
+seoul_pet_hospital = pd.read_csv(url + '/data/PetHospital.csv', encoding = 'cp949')
 # 서울시 애견미용업장 파일 불러오기
-# seoul_pet_beauty = pd.read_excel('data/PetBeautyShop.xls')
+seoul_pet_beauty = pd.read_excel(url + '/data/PetBeautyShop.xls')
 # 서울시 애견위탁관리 파일 불러오기
-seoul_pet_consignment = pd.read_csv('data/PetHotel.csv', encoding = 'cp949')
+seoul_pet_consignment = pd.read_csv(url + '/data/PetHotel.csv', encoding = 'cp949')
 # 서울시 주요 공원 현황 파일 불러오기
-seoul_park = pd.read_csv('data/SeoulPark.csv', encoding = 'cp949')
+seoul_park = pd.read_csv(url + '/data/SeoulPark.csv', encoding = 'cp949')
 # 반려동물 유무 비율 보유 파일 불러오기ㅖ
-seoul_pet_own = pd.read_csv('data/HowManyPeoPle.csv')
+seoul_pet_own = pd.read_csv(url + '/data/HowManyPeoPle.csv')
 
 
 def drawGraph(X, Y, title, colormap):
