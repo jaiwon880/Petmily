@@ -144,7 +144,7 @@ spb2 = spb.groupby(spb["소재지"]).count()[["업체명"]]
 
 spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
 spb_sort = spb_sort.groupby('소재지').count().reset_index()
-spb_sort = spb_sort.sort_values(by=['사업장명'], ascending=False)
+spb_sort = spb_sort.sort_values(by=['업체명'], ascending=False)
 
 
 # 애견 미용 차트
