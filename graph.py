@@ -5,10 +5,10 @@ import pandas as pd
 import numpy as np
 
 # 시각화
-import matplotlib.pyplot as plt
-%matplotlib inline
-import seaborn as sns
-import streamlit as st
+# import matplotlib.pyplot as plt
+# %matplotlib inline
+# import seaborn as sns
+# import streamlit as st
 
 #한글 폰트 처리
 # !sudo apt-get install -y fonts-nanum
@@ -107,27 +107,29 @@ def seoulPetHospital():
     sph_gu=(sph.groupby(sph['소재지전체주소']).count())[["사업장명"]]
     sph_sort = sph_gu.sort_values(by=['사업장명'], ascending=False)
 
-    #==============
-    #그래프그리기
-    # 그라데이션 색상을 위한 컬러 맵 생성
-    cmap = plt.get_cmap('winter')
+    st.bar_chart(sph_sort, x=ph_sort.index, y=sph_sort['사업장명'], width=20, height=10, use_container_width=True)
+    
+    # #==============
+    # #그래프그리기
+    # # 그라데이션 색상을 위한 컬러 맵 생성
+    # cmap = plt.get_cmap('winter')
 
-    # 데이터프레임에서 값을 가져와서 바차트를 그립니다.
-    fig, ax = plt.subplots(figsize = (20, 10))
-    bars = ax.bar(sph_sort.index, sph_sort['사업장명'], align='center')
+    # # 데이터프레임에서 값을 가져와서 바차트를 그립니다.
+    # fig, ax = plt.subplots(figsize = (20, 10))
+    # bars = ax.bar(sph_sort.index, sph_sort['사업장명'], align='center')
 
-    # 그라데이션 색상 적용
-    for i, bar in enumerate(bars):
-        bar.set_color(cmap(i / len(sph_sort.index)))
+    # # 그라데이션 색상 적용
+    # for i, bar in enumerate(bars):
+    #     bar.set_color(cmap(i / len(sph_sort.index)))
 
-    # x축 레이블 설정
-    plt.xticks(rotation = 45, fontsize = 15)
+    # # x축 레이블 설정
+    # plt.xticks(rotation = 45, fontsize = 15)
 
-    # 그래프 타이틀 설정
-    plt.title('서울시 자치구별 동물병원 수')
+    # # 그래프 타이틀 설정
+    # plt.title('서울시 자치구별 동물병원 수')
 
-    # 그래프 출력
-    plt.show()
+    # # 그래프 출력
+    # plt.show()
 
 
 
@@ -151,24 +153,24 @@ def seoulBetBeauty():
     spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
 
     # 그라데이션 색상을 위한 컬러 맵 생성
-    cmap = plt.get_cmap('spring')
+    # cmap = plt.get_cmap('spring')
 
-    # 데이터프레임에서 값을 가져와서 바차트를 그립니다.
-    fig, ax = plt.subplots(figsize = (20, 10))
-    bars = ax.bar(spb_sort.index, spb_sort['업체명'], align='center')
+    # # 데이터프레임에서 값을 가져와서 바차트를 그립니다.
+    # fig, ax = plt.subplots(figsize = (20, 10))
+    # bars = ax.bar(spb_sort.index, spb_sort['업체명'], align='center')
 
-    # 그라데이션 색상 적용
-    for i, bar in enumerate(bars):
-        bar.set_color(cmap(i / len(spb_sort.index)))
+    # # 그라데이션 색상 적용
+    # for i, bar in enumerate(bars):
+    #     bar.set_color(cmap(i / len(spb_sort.index)))
 
-    # x축 레이블 설정
-    plt.xticks(rotation = 45, fontsize = 15)
+    # # x축 레이블 설정
+    # plt.xticks(rotation = 45, fontsize = 15)
 
-    # 그래프 타이틀 설정
-    plt.title('서울시 자치구별 동물미용업체 수')
+    # # 그래프 타이틀 설정
+    # plt.title('서울시 자치구별 동물미용업체 수')
 
-    # 그래프 출력
-    plt.show()
+    # # 그래프 출력
+    # plt.show()
 
 
 
@@ -194,21 +196,21 @@ def seoulPetCon():
     spc_gu['data'] = spc_gu['data'].astype('float')
     spc_gu.sort_values('data', inplace=True, ascending=False)
 
-    # 그라데이션 색상을 위한 컬러 맵 생성
-    cmap = plt.get_cmap('coolwarm')
-    # 데이터프레임에서 값을 가져와서 바차트를 그립니다.
-    fig, ax = plt.subplots(figsize = (20, 10))
-    # bars = ax.bar(list(sorted_dict2.keys())[::-1], list(sorted_dict2.values())[::-1], align='center')
-    bars = ax.bar(spc_gu.gu, spc_gu.data, align='center')
-    # 그라데이션 색상 적용
-    for i, bar in enumerate(bars):
-        bar.set_color(cmap(i / len(list(sorted_dict2.keys()))))
-    # x축 레이블 설정
-    plt.xticks(rotation = 45, fontsize = 15)
-    # 그래프 타이틀 설정
-    plt.title('서울시 자치구별 주민 반려동물 보유 비율')
-    # 그래프 출력
-    plt.show()
+    # # 그라데이션 색상을 위한 컬러 맵 생성
+    # cmap = plt.get_cmap('coolwarm')
+    # # 데이터프레임에서 값을 가져와서 바차트를 그립니다.
+    # fig, ax = plt.subplots(figsize = (20, 10))
+    # # bars = ax.bar(list(sorted_dict2.keys())[::-1], list(sorted_dict2.values())[::-1], align='center')
+    # bars = ax.bar(spc_gu.gu, spc_gu.data, align='center')
+    # # 그라데이션 색상 적용
+    # for i, bar in enumerate(bars):
+    #     bar.set_color(cmap(i / len(list(sorted_dict2.keys()))))
+    # # x축 레이블 설정
+    # plt.xticks(rotation = 45, fontsize = 15)
+    # # 그래프 타이틀 설정
+    # plt.title('서울시 자치구별 주민 반려동물 보유 비율')
+    # # 그래프 출력
+    # plt.show()
 
 
 
@@ -238,23 +240,23 @@ def seoulPark():
     parksg_gu=(park_info.groupby(park_info['공원주소']).count())[["공원명"]].sort_values(by='공원명', ascending=False)
     parksg_gu = parksg_gu.rename(columns={'공원명': '공원 수', '공원주소':'자치구'})
 
-    # 그라데이션 색상을 위한 컬러 맵 생성
-    cmap = plt.get_cmap('summer')
+    # # 그라데이션 색상을 위한 컬러 맵 생성
+    # cmap = plt.get_cmap('summer')
 
-    fig, ax = plt.subplots(figsize = (20, 10))
-    bars_park = ax.bar(parksg_gu.index, parksg_gu['공원 수'], align='center')
+    # fig, ax = plt.subplots(figsize = (20, 10))
+    # bars_park = ax.bar(parksg_gu.index, parksg_gu['공원 수'], align='center')
 
-    plt.title("서울시 자치구별 공원 수")
-    plt.xlabel("자치구")
-    plt.ylabel("공원 수")
-    plt.xticks(rotation = 45, fontsize = 15)
+    # plt.title("서울시 자치구별 공원 수")
+    # plt.xlabel("자치구")
+    # plt.ylabel("공원 수")
+    # plt.xticks(rotation = 45, fontsize = 15)
 
-    # 그라데이션 색상 적용
-    for i, bar in enumerate(bars_park):
-        bar.set_color(cmap(i / len(parksg_gu)))
+    # # 그라데이션 색상 적용
+    # for i, bar in enumerate(bars_park):
+    #     bar.set_color(cmap(i / len(parksg_gu)))
 
-    # 그래프 출력
-    plt.show()
+    # # 그래프 출력
+    # plt.show()
         
 
 
@@ -285,18 +287,18 @@ def WhoHavePet():
 
     import matplotlib.pyplot as plt
 
-    # 그라데이션 색상을 위한 컬러 맵 생성
-    cmap = plt.get_cmap('coolwarm')
-    # 데이터프레임에서 값을 가져와서 바차트를 그립니다.
-    fig, ax = plt.subplots(figsize = (20, 10))
-    # bars = ax.bar(list(sorted_dict2.keys())[::-1], list(sorted_dict2.values())[::-1], align='center')
-    bars = ax.bar(pet_have_df.gu, pet_have_df.data, align='center')
-    # 그라데이션 색상 적용
-    for i, bar in enumerate(bars):
-        bar.set_color(cmap(i / len(list(pet_have_dict_sorted.keys()))))
-    # x축 레이블 설정
-    plt.xticks(rotation = 45, fontsize = 15)
-    # 그래프 타이틀 설정
-    plt.title('서울시 자치구별 주민 반려동물 보유 비율')
-    # 그래프 출력
-    plt.show()
+    # # 그라데이션 색상을 위한 컬러 맵 생성
+    # cmap = plt.get_cmap('coolwarm')
+    # # 데이터프레임에서 값을 가져와서 바차트를 그립니다.
+    # fig, ax = plt.subplots(figsize = (20, 10))
+    # # bars = ax.bar(list(sorted_dict2.keys())[::-1], list(sorted_dict2.values())[::-1], align='center')
+    # bars = ax.bar(pet_have_df.gu, pet_have_df.data, align='center')
+    # # 그라데이션 색상 적용
+    # for i, bar in enumerate(bars):
+    #     bar.set_color(cmap(i / len(list(pet_have_dict_sorted.keys()))))
+    # # x축 레이블 설정
+    # plt.xticks(rotation = 45, fontsize = 15)
+    # # 그래프 타이틀 설정
+    # plt.title('서울시 자치구별 주민 반려동물 보유 비율')
+    # # 그래프 출력
+    # plt.show()
