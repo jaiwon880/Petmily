@@ -127,7 +127,7 @@ bar_chart = alt.Chart(sph_sort2).mark_bar(
 
 
 
-col1,col2 = st.columns([1,1])
+col1,col2 = st.columns([2,2])
 # 공간을 2:3 으로 분할하여 col1과 col2라는 이름을 가진 컬럼을 생성
 
 with col1 :
