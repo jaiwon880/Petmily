@@ -14,7 +14,8 @@ Original file is located at
 # 분석 기본 라이브러리
 import pandas as pd
 import numpy as np
-import plotly.express as px
+import plotly.graph_objects as go
+import plotly.figure_factory as ff
 
 # 서울시 동물병원 파일 불러오기
 seoul_pet_hospital = pd.read_csv('web_petmily/서울시_동물병원.csv', encoding = 'cp949')
