@@ -120,8 +120,7 @@ bar_chart = alt.Chart(sph_sort2).mark_bar(
 ).encode(
     x=alt.X('소재지전체주소'),
     y=alt.Y('사업장명'),
-    y=alt.Order('사업장명', sort='descending'),
-    fontSize=10,
+    fontSize=5,
     color=alt.Color('소재지전체주소', scale=alt.Scale(scheme='darkblue'), legend=None)
 ).properties(
 )
