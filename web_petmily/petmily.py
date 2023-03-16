@@ -152,7 +152,7 @@ spb2 = spb.groupby(spb["소재지"]).count()[["업체명"]]
 spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
 spb_sort = spb.groupby('소재지').count().reset_index()
 spb_sort = spb_sort.sort_values(by=['업체명'], ascending=False)
-spb_sort
+
 
 # 애견 미용 차트
 bar_chart2 = alt.Chart(spb_sort).mark_bar(
@@ -187,13 +187,13 @@ pet_have_df = pd.DataFrame(pet_have_dict_sorted.items(), columns=['gu', 'data'])
 pet_have_df['data'] = pet_have_df['data'].astype('float')
 pet_have_df =pet_have_df.sort_values('data', inplace=True, ascending=False)
 
-bar_chart3 = alt.Chart(pet_have_df).mark_bar(
-).encode(
-    x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
-    y=alt.Y('data',axis=alt.Axis(title=''),sort='-y'),
-    color=alt.Color('gu', scale=alt.Scale(scheme='darkgold'), legend=None)
-).properties(
-)
+# bar_chart3 = alt.Chart(pet_have_df).mark_bar(
+# ).encode(
+#     x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
+#     y=alt.Y('data',axis=alt.Axis(title=''),sort='-y'),
+#     color=alt.Color('gu', scale=alt.Scale(scheme='darkgold'), legend=None)
+# ).properties(
+# )
 
 
 
