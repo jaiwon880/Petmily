@@ -190,6 +190,7 @@ spc_gu = pd.DataFrame(sorted_done_dict.items(), columns=['gu', 'data'])
 spc_gu['data'] = spc_gu['data'].astype('float')
 spc_gu = spc_gu.sort_values('data', inplace=True, ascending=False)
 spc_gu
+
 # bar_chart3 = alt.Chart(spc_gu).mark_bar(
 # ).encode(
 #     x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
@@ -217,7 +218,7 @@ with col1 :
 
   # lightgreyteal
   st.markdown("**:blue[반려동물 보유 비율]**")
-  st.altair_chart(bar_chart3, use_container_width=True)
+#   st.altair_chart(bar_chart3, use_container_width=True)
   st.info('자치구별 반려동물 보유비율입니다.', icon="ℹ️")
 
 
