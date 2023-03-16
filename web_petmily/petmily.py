@@ -120,14 +120,14 @@ bar_chart = alt.Chart(sph_sort3).mark_bar(
     x=alt.X('소재지전체주소',axis=alt.Axis(title=None,labelFontSize=2.0,labelAngle=-45.0)),
     y=alt.Y('사업장명',axis=alt.Axis(title=None),
     color=alt.Color('소재지전체주소', scale=alt.Scale(scheme='darkblue'), legend=None)
-).properties(
+)).properties(
 )
 
 # Streamlit 앱 구성
 
 
 
-col1,col2 = st.columns([2,2])
+col1,col2 = st.columns([1,1])
 # 공간을 2:3 으로 분할하여 col1과 col2라는 이름을 가진 컬럼을 생성
 
 with col1 :
