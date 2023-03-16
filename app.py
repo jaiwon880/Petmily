@@ -5,8 +5,6 @@ st.title("팻밀리")
 
 st.subheader("반려견 행복지도")
 
-st.write(graph.seoulPetHospital())
-
 #@title 라이브러리 및 모듈 불러오기
 # 분석 기본 라이브러리
 
@@ -353,3 +351,4 @@ def WhoHavePet():
 
 
 
+seoulPetHospital()
