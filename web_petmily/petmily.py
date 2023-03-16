@@ -523,5 +523,3 @@ for i in range(len(address)):
     )
     # 차트 출력
     fig.show()
-
-!pip install streamlit -q
