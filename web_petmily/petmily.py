@@ -169,23 +169,23 @@ bar_chart2 = alt.Chart(spb_sort).mark_bar(
 # """# 반려동물 유무 비율"""
 
 # CSV 파일 읽어오기
-pet_have = pd.read_csv('반려동물+유무+및+취득+경로_20230314161547.csv')
+# pet_have = pd.read_csv('반려동물+유무+및+취득+경로_20230314161547.csv')
 
-# 특정열에 특정값을 가진 행 추출하기
-pet_have2 = pet_have[pet_have['구분별(1)'].str.contains("지역소분류")]
+# # 특정열에 특정값을 가진 행 추출하기
+# pet_have2 = pet_have[pet_have['구분별(1)'].str.contains("지역소분류")]
 
-# 추출된 데이터를 새로운 CSV 파일로 저장하기
-pet_have2.to_csv('반려동물 유무.csv', index=False)
+# # 추출된 데이터를 새로운 CSV 파일로 저장하기
+# pet_have2.to_csv('반려동물 유무.csv', index=False)
 
 
-pet_have_dict = dict(zip(pet_have2['구분별(2)'], pet_have2['2021']))
-pet_have_dict2 = copy.deepcopy(pet_have_dict)
-pet_have_dict_sorted_items = sorted(pet_have_dict2.items(), key=lambda x: x[1], reverse=True)
-pet_have_dict_sorted = dict(pet_have_dict_sorted_items)
+# pet_have_dict = dict(zip(pet_have2['구분별(2)'], pet_have2['2021']))
+# pet_have_dict2 = copy.deepcopy(pet_have_dict)
+# pet_have_dict_sorted_items = sorted(pet_have_dict2.items(), key=lambda x: x[1], reverse=True)
+# pet_have_dict_sorted = dict(pet_have_dict_sorted_items)
 
-pet_have_df = pd.DataFrame(pet_have_dict_sorted.items(), columns=['gu', 'data'])
-pet_have_df['data'] = pet_have_df['data'].astype('float')
-pet_have_df =pet_have_df.sort_values('data', inplace=True, ascending=False)
+# pet_have_df = pd.DataFrame(pet_have_dict_sorted.items(), columns=['gu', 'data'])
+# pet_have_df['data'] = pet_have_df['data'].astype('float')
+# pet_have_df =pet_have_df.sort_values('data', inplace=True, ascending=False)
 
 # bar_chart3 = alt.Chart(pet_have_df).mark_bar(
 # ).encode(
@@ -199,30 +199,27 @@ pet_have_df =pet_have_df.sort_values('data', inplace=True, ascending=False)
 
 # 서울시 애견위탁관리 파일 불러오기
 # 번호, 구분(위탁관리 포함된 문자만), 업체명, 소재지
+# spc = seoul_pet_con.groupby([seoul_pet_con["개방서비스명"],seoul_pet_con["소재지전체주소"]])
+# spc2 = spc[["소재지전체주소"]].count().rename(columns={"소재지전체주소": "개수"})
 
 
+# dict1 = spc2.iloc[1:].loc[:,'개수'].reset_index(level=0, drop=True).to_dict()
+# dict2 = copy.deepcopy(dict1)
+# dict2_keys_list = list(dict2.keys())
+# dict2_values_list = list(dict2.values())
+# dict2_keys_list2 = [x + "구" for x in dict2_keys_list]
+# dict2_keys_list3 = [x.replace("서울특별시", "") for x in dict2_keys_list2]
 
-spc = seoul_pet_con.groupby([seoul_pet_con["개방서비스명"],seoul_pet_con["소재지전체주소"]])
-spc2 = spc[["소재지전체주소"]].count().rename(columns={"소재지전체주소": "개수"})
+# done_dict = dict(zip(dict2_keys_list3, dict2_values_list))
 
+# # 정렬
+# sorted_items = sorted(done_dict.items(), key=lambda x: x[1], reverse=True)
+# sorted_done_dict = dict(sorted_items)
 
-dict1 = spc2.iloc[1:].loc[:,'개수'].reset_index(level=0, drop=True).to_dict()
-dict2 = copy.deepcopy(dict1)
-dict2_keys_list = list(dict2.keys())
-dict2_values_list = list(dict2.values())
-dict2_keys_list2 = [x + "구" for x in dict2_keys_list]
-dict2_keys_list3 = [x.replace("서울특별시", "") for x in dict2_keys_list2]
-
-done_dict = dict(zip(dict2_keys_list3, dict2_values_list))
-
-# 정렬
-sorted_items = sorted(done_dict.items(), key=lambda x: x[1], reverse=True)
-sorted_done_dict = dict(sorted_items)
-
-spc_gu = pd.DataFrame(sorted_done_dict.items(), columns=['gu', 'data'])
-spc_gu['data'] = spc_gu['data'].astype('float')
-spc_gu = spc_gu.sort_values('data', inplace=True, ascending=False)
-spc_gu
+# spc_gu = pd.DataFrame(sorted_done_dict.items(), columns=['gu', 'data'])
+# spc_gu['data'] = spc_gu['data'].astype('float')
+# spc_gu = spc_gu.sort_values('data', inplace=True, ascending=False)
+# spc_gu
 
 
 # bar_chart3 = alt.Chart(spc_gu).mark_bar(
