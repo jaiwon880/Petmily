@@ -39,17 +39,13 @@ gu_dict = {
           "강북구":'https://user-images.githubusercontent.com/102681611/225593468-a0255c87-c861-4716-8774-818d305fcca1.png',
 "동대문구":'https://user-images.githubusercontent.com/126433780/225597051-414a4745-ad14-48a8-badc-e75fd20ca4e5.png'}
 
-st.sidebar.title('서울시 자치구를 선택해주세요👇')
+st.sidebar.title('자치구를 선택해주세요! 👇')
 
 choice = st.sidebar.selectbox("자치구 선택",
 ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구","중랑구"]
 )
 st.image(gu_dict[choice], use_column_width=True)
 
-
-
-# tmp_df = df[df['species']== add_selectbox]
-# st.table(tmp_df.head())
 
 
 col1,col2 = st.columns([1,1])
@@ -98,7 +94,7 @@ with col2 :
 
 
 # Text Area
-message = st.text_area("소개해 드린 추천 채널의 느낀점을 입력해 주세요", "이곳에 입력하세요.")
+message = st.text_area("해당 페이지의 느낀점을 입력해 주세요 😊", "이곳에 입력하세요.")
 if st.button("Submit", key='message'):
   result = message.title()
   st.success(result)
