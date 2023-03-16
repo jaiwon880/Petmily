@@ -70,7 +70,7 @@ with col1 :
   st.markdown("**:blue[동물 병원] 이용 순위**")
   alt.Chart(sph_sort).mark_bar().encode(
     x=sph_sort.index,
-#     y='사업장명')
+    y='사업장명')
 #       fig = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
 #              color_continuous_scale='Blues',
 #              labels={'x': '자치구', 'y': '동물병원 수'},
