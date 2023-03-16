@@ -138,6 +138,9 @@ for col in cols1:
 
 pattern = '|'.join(sph_list)
 
+spb['소재지'] = spb['소재지'].str.extract(f'({pattern})', flags=re.IGNORECASE)
+
+
 
 # 소재지 전체주소 별 사업장 수 계산
 sph_sort2 = sph.groupby('소재지전체주소').count().reset_index()
