@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 %matplotlib inline
 import seaborn as sns
-imoprt streamlit as st
+import streamlit as st
 
 #한글 폰트 처리
 # !sudo apt-get install -y fonts-nanum
