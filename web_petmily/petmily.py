@@ -110,11 +110,6 @@ sph_gu=(sph.groupby(sph['소재지전체주소']).count())[["사업장명"]]
 sph_sort = sph_gu.sort_values(by=['사업장명'], ascending=False)
 sph_sort
 
-
-a= alt.Chart(sph_sort).mark_bar().encode(
-    x="소재지전체주소",
-    y='사업장명')
-
 col1,col2 = st.columns([1,1])
 # 공간을 2:3 으로 분할하여 col1과 col2라는 이름을 가진 컬럼을 생성
 
