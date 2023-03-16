@@ -6,6 +6,6 @@ from PIL import Image
 st.title("팻밀리")
 st.subheader("반려견 행복지도")
 
-image = Image.open(imagefiles/'PetHospital.png')
-st.image(image, caption='동물병원')
-
+# image = Image.open(+'/PetHospital.png')
+# st.image(image, caption='동물병원')
+st.image(f"imagefiles/PetHospital.png", caption='동물병원')
