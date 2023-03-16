@@ -67,6 +67,14 @@ def create_df4():
   # df 반환
   return seoul_pet_beauty
 
+seoul_pet_hospital = pd.read_csv('https://raw.githubusercontent.com/jaiwon880/Python_bd23_hjw/main/submission/jaiwon880/01_first_webapp/%EC%84%9C%EC%9A%B8%EC%8B%9C_%EB%8F%99%EB%AC%BC%EB%B3%91%EC%9B%90.csv')
+sph = seoul_pet_hospital.copy()
+sph = Preprocess(sph)
+sph = sph.dropna(how='all')
+
+sph
+
+
 
 # import re
 
