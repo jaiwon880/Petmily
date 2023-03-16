@@ -120,7 +120,7 @@ bar_chart = alt.Chart(sph_sort2).mark_bar(
 ).encode(
     x=alt.X('소재지전체주소', axis=alt.Axis(title='소재지 전체주소')),
     y=alt.Y('사업장명', axis=alt.Axis(title='사업장명 갯수')),
-    color=alt.Color('소재지전체주소', scale=alt.Scale(scheme='blues'), legend=None)
+    color=alt.Color('소재지전체주소', scale=alt.Scale(scheme='blues_r'), legend=None)
 ).properties(
 )
 
@@ -134,7 +134,7 @@ col1,col2 = st.columns([1,1])
 with col1 :
   # column 1 에 담을 내용
   st.markdown("**:blue[동물 병원] 이용 순위**")
-  st.altair_chart(bar_chart, use_container_width=False)
+  st.altair_chart(bar_chart, use_container_width=True)
   st.image("https://user-images.githubusercontent.com/71927533/225588437-0a7d6c29-27fa-48d9-b652-54573a4e35b6.png")
   st.info('자치구별 동물 병원수 입니다.', icon="ℹ️")
   
