@@ -1,6 +1,6 @@
 # streamlit 라이브러리 호출
 import streamlit as st
-import graph.py
+import graph
 
 st.title("팻밀리")
 
