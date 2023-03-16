@@ -187,16 +187,6 @@ pet_have_df = pd.DataFrame(pet_have_dict_sorted.items(), columns=['gu', 'data'])
 pet_have_df['data'] = pet_have_df['data'].astype('float')
 pet_have_df =pet_have_df.sort_values('data', inplace=True, ascending=False)
 
-
-pet_have_df = pet_have_df.groupby('gu').count().reset_index()
-pet_have_df = pet_have_df.sort_values(by=['data'], ascending=False)
-
-pet_have_df = pet_have_df.groupby(pet_have_df["gu"]).count()[["data"]]
-
-pet_have_df = pet_have_df.sort_values(by=['data'], ascending=False)
-pet_have_df = pet_have_df.groupby('gu').count().reset_index()
-pet_have_df = pet_have_df.sort_values(by=['data'], ascending=False)
-
 bar_chart3 = alt.Chart(pet_have_df).mark_bar(
 ).encode(
     x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
