@@ -110,13 +110,29 @@ sph_gu=(sph.groupby(sph['소재지전체주소']).count())[["사업장명"]]
 sph_sort = sph_gu.sort_values(by=['사업장명'], ascending=False)
 sph_sort
 
+
+# 소재지 전체주소 별 사업장 수 계산
+sph_sort2 = sph.groupby('소재지전체주소').count().reset_index()
+
+# 알테어 바 차트 생성
+bar_chart = alt.Chart(sph_sort2).mark_bar().encode(
+    x=alt.X('소재지전체주소', axis=alt.Axis(title='소재지 전체주소')),
+    y=alt.Y('사업장명', axis=alt.Axis(title='사업장명 갯수'))
+).properties(
+    title='소재지 전체주소별 사업장 수'
+)
+
+# Streamlit 앱 구성
+
+
+
 col1,col2 = st.columns([1,1])
 # 공간을 2:3 으로 분할하여 col1과 col2라는 이름을 가진 컬럼을 생성
 
 with col1 :
   # column 1 에 담을 내용
   st.markdown("**:blue[동물 병원] 이용 순위**")
-  st.bar_chart(sph_sort[['소재지전체주소', '사업장명']])
+  st.altair_chart(bar_chart, use_container_width=True)
   st.image("https://user-images.githubusercontent.com/71927533/225588437-0a7d6c29-27fa-48d9-b652-54573a4e35b6.png")
   st.info('자치구별 동물 병원수 입니다.', icon="ℹ️")
   
