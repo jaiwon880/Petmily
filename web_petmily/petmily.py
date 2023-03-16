@@ -141,12 +141,6 @@ pattern = '|'.join(sph_list)
 
 spb['소재지'] = spb['소재지'].str.extract(f'({pattern})', flags=re.IGNORECASE)
 
-
-
-# 소재지 전체주소 별 사업장 수 계산
-sph_sort2 = spb.groupby('소재지전체주소').count().reset_index()
-sph_sort3 = sph_sort2.sort_values(by=['사업장명'], ascending=False)
-
 spb2 = spb.groupby(spb["소재지"]).count()[["업체명"]]
 
 spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
