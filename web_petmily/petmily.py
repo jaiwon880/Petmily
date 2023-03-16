@@ -114,6 +114,7 @@ sph_sort = sph_gu.sort_values(by=['사업장명'], ascending=False)
 sph_sort2 = sph.groupby('소재지전체주소').count().reset_index()
 sph_sort3 = sph_sort2.sort_values(by=['사업장명'], ascending=False)
 
+
 # 알테어 바 차트 생성
 bar_chart = alt.Chart(sph_sort3).mark_bar(
 ).encode(
@@ -122,6 +123,29 @@ bar_chart = alt.Chart(sph_sort3).mark_bar(
     color=alt.Color('소재지전체주소', scale=alt.Scale(scheme='darkblue'), legend=None)
 ).properties(
 )
+
+#@title 서울시 애견미용업장 파일 불러오기
+# 번호, 구분, 업체명, 소재지
+
+#@title 서울시 애견 미용업장 파일 복사
+spb = seoul_pet_beauty.copy()
+
+# 인허가 정보 컬럼들 제거
+cols1 = ["번호", "인허가 정보", "이전인허가정보"]
+
+for col in cols1:
+    del spb[col]
+
+pattern = '|'.join(sph_list)
+
+spb['소재지'] = spb['소재지'].str.extract(f'({pattern})', flags=re.IGNORECASE)
+
+spb2 = spb.groupby(spb["소재지"]).count()[["업체명"]]
+
+spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
+spb_sort = spb_sort.groupby('소재지').count().reset_index()
+spb_sort = spb_sort.sort_values(by=['사업장명'], ascending=False)
+
 
 # 애견 미용 차트
 bar_chart2 = alt.Chart(spb_sort).mark_bar(
@@ -199,28 +223,7 @@ with col2 :
 # )
 # fig.show()
 
-"""# 서울시 애견미용업장"""
 
-#@title 서울시 애견미용업장 파일 불러오기
-# 번호, 구분, 업체명, 소재지
-
-#@title 서울시 애견 미용업장 파일 복사
-spb = seoul_pet_beauty.copy()
-
-# 인허가 정보 컬럼들 제거
-cols1 = ["번호", "인허가 정보", "이전인허가정보"]
-
-for col in cols1:
-    del spb[col]
-
-pattern = '|'.join(sph_list)
-
-spb['소재지'] = spb['소재지'].str.extract(f'({pattern})', flags=re.IGNORECASE)
-
-spb2 = spb.groupby(spb["소재지"]).count()[["업체명"]]
-
-spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
-spb_sort
 
 
 """# 서울시 애견 위탁관리"""
