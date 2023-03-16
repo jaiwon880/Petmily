@@ -36,8 +36,8 @@ seoul_pet_beauty = pd.read_excel('data/PetBeautyShop.xls')
 seoul_pet_consignment = pd.read_csv('data/PetHotel.csv', encoding = 'cp949')
 # 서울시 주요 공원 현황 파일 불러오기
 seoul_park = pd.read_csv('data/SeoulPark.csv', encoding = 'cp949')
-# 반려동물 유무 비율 보유 파일 불러오기
-seoul_pet_own = pd.read_csv('data/HowManyPeople.csv')
+# 반려동물 유무 비율 보유 파일 불러오기ㅖ
+seoul_pet_own = pd.read_csv('data/HowManyPeoPle.csv')
 
 
 def drawGraph(X, Y, title, colormap):
