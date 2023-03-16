@@ -117,8 +117,8 @@ sph_sort3 = sph_sort2.sort_values(by=['사업장명'], ascending=False)
 # 알테어 바 차트 생성
 bar_chart = alt.Chart(sph_sort3).mark_bar(
 ).encode(
-    x=alt.X('소재지전체주소',axis=alt.Axis(title='소재지 전체주소',labelFontSize=2.0,labelAngle=-45.0)),
-    y=alt.Y('사업장명'),
+    x=alt.X('소재지전체주소',axis=alt.Axis(title=None,labelFontSize=2.0,labelAngle=-45.0)),
+    y=alt.Y('사업장명',axis=alt.Axis(title=None),
     color=alt.Color('소재지전체주소', scale=alt.Scale(scheme='darkblue'), legend=None)
 ).properties(
 )
