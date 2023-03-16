@@ -119,7 +119,7 @@ sph_sort3 = sph_sort2.sort_values(by=['사업장명'], ascending=False)
 bar_chart = alt.Chart(sph_sort3).mark_bar(
 ).encode(
     x=alt.X('소재지전체주소',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
-    y=alt.Y('사업장명',axis=alt.Axis(title=''),sort='-x'),
+    y=alt.Y('사업장명',axis=alt.Axis(title=''),sort='-y'),
     color=alt.Color('소재지전체주소', scale=alt.Scale(scheme='darkblue'), legend=None)
 ).properties(
 )
@@ -138,12 +138,15 @@ for col in cols1:
 
 pattern = '|'.join(sph_list)
 
-spb['소재지'] = spb['소재지'].str.extract(f'({pattern})', flags=re.IGNORECASE)
+
+# 소재지 전체주소 별 사업장 수 계산
+sph_sort2 = sph.groupby('소재지전체주소').count().reset_index()
+sph_sort3 = sph_sort2.sort_values(by=['사업장명'], ascending=False)
 
 spb2 = spb.groupby(spb["소재지"]).count()[["업체명"]]
 
 spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
-spb_sort = spb_sort.groupby('소재지').count().reset_index()
+spb_sort = spb.groupby('소재지').count().reset_index()
 spb_sort = spb_sort.sort_values(by=['업체명'], ascending=False)
 spb_sort
 
@@ -151,7 +154,7 @@ spb_sort
 bar_chart2 = alt.Chart(spb_sort).mark_bar(
 ).encode(
     x=alt.X('소재지',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
-    y=alt.Y('업체명',axis=alt.Axis(title=''), sort='-x'),
+    y=alt.Y('업체명',axis=alt.Axis(title=''), sort='-y'),
     color=alt.Color('소재지', scale=alt.Scale(scheme='darkgold'), legend=None)
 ).properties(
 )
