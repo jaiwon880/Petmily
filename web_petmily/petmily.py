@@ -119,25 +119,25 @@ sph_gu=(sph.groupby(sph['소재지전체주소']).count())[["사업장명"]]
 sph_sort = sph_gu.sort_values(by=['사업장명'], ascending=False)
 sph_sort
 
-# 그라데이션 색상을 위한 컬러 맵 생성
-cmap = plt.get_cmap('winter')
+# # 그라데이션 색상을 위한 컬러 맵 생성
+# cmap = plt.get_cmap('winter')
 
-# 데이터프레임에서 값을 가져와서 바차트를 그립니다.
-fig, ax = plt.subplots(figsize = (20, 10))
-bars = ax.bar(sph_sort.index, sph_sort['사업장명'], align='center')
+# # 데이터프레임에서 값을 가져와서 바차트를 그립니다.
+# fig, ax = plt.subplots(figsize = (20, 10))
+# bars = ax.bar(sph_sort.index, sph_sort['사업장명'], align='center')
 
-# 그라데이션 색상 적용
-for i, bar in enumerate(bars):
-    bar.set_color(cmap(i / len(sph_sort.index)))
+# # 그라데이션 색상 적용
+# for i, bar in enumerate(bars):
+#     bar.set_color(cmap(i / len(sph_sort.index)))
 
-# x축 레이블 설정
-plt.xticks(rotation = 45, fontsize = 15)
+# # x축 레이블 설정
+# plt.xticks(rotation = 45, fontsize = 15)
 
-# 그래프 타이틀 설정
-plt.title('서울시 자치구별 동물병원 수')
+# # 그래프 타이틀 설정
+# plt.title('서울시 자치구별 동물병원 수')
 
-# 그래프 출력
-plt.show()
+# # 그래프 출력
+# plt.show()
 
 # fig = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
 #              color_continuous_scale='Blues',
