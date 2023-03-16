@@ -14,7 +14,7 @@ Original file is located at
 # 분석 기본 라이브러리
 import pandas as pd
 import numpy as np
-
+import plotly.express as px
 
 # 서울시 동물병원 파일 불러오기
 seoul_pet_hospital = pd.read_csv('web_petmily/서울시_동물병원.csv', encoding = 'cp949')
@@ -113,7 +113,6 @@ sph_sort
 # # 그래프 출력
 # plt.show()
 
-import plotly.express as px
 fig = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
              color_continuous_scale='Blues',
              labels={'x': '자치구', 'y': '동물병원 수'},
