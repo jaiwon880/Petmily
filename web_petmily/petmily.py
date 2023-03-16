@@ -164,6 +164,46 @@ bar_chart2 = alt.Chart(spb_sort).mark_bar(
 )
 
 
+
+
+# """# 반려동물 유무 비율"""
+
+# CSV 파일 읽어오기
+pet_have = pd.read_csv('반려동물+유무+및+취득+경로_20230314161547.csv')
+
+# 특정열에 특정값을 가진 행 추출하기
+pet_have2 = pet_have[pet_have['구분별(1)'].str.contains("지역소분류")]
+
+# 추출된 데이터를 새로운 CSV 파일로 저장하기
+pet_have2.to_csv('반려동물 유무.csv', index=False)
+
+
+pet_have_dict = dict(zip(pet_have2['구분별(2)'], pet_have2['2021']))
+pet_have_dict2 = copy.deepcopy(pet_have_dict)
+pet_have_dict_sorted_items = sorted(pet_have_dict2.items(), key=lambda x: x[1], reverse=True)
+pet_have_dict_sorted = dict(pet_have_dict_sorted_items)
+
+pet_have_df = pd.DataFrame(pet_have_dict_sorted.items(), columns=['gu', 'data'])
+pet_have_df['data'] = pet_have_df['data'].astype('float')
+pet_have_df =pet_have_df.sort_values('data', inplace=True, ascending=False)
+
+
+pet_have2 = pet_have.groupby(spb["gu"]).count()[["data"]]
+
+pet_have3 = pet_have2.sort_values(by=['data'], ascending=False)
+pet_have4 = pet_have.groupby('gu').count().reset_index()
+pet_have4 = pet_have4.sort_values(by=['data'], ascending=False)
+pet_have4
+
+bar_chart3 = alt.Chart(pet_have4).mark_bar(
+).encode(
+    x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
+    y=alt.Y('data',axis=alt.Axis(title=''),sort='-y'),
+    color=alt.Color('gu', scale=alt.Scale(scheme='darkgold'), legend=None)
+).properties(
+)
+
+
 # 서울시 애견위탁관리 파일 불러오기
 # 번호, 구분(위탁관리 포함된 문자만), 업체명, 소재지
 
@@ -191,13 +231,8 @@ spc_gu['data'] = spc_gu['data'].astype('float')
 spc_gu = spc_gu.sort_values('data', inplace=True, ascending=False)
 spc_gu
 
-# bar_chart3 = alt.Chart(spc_gu).mark_bar(
-# ).encode(
-#     x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
-#     y=alt.Y('data',axis=alt.Axis(title=''),sort='-y'),
-#     color=alt.Color('gu', scale=alt.Scale(scheme='darkgold'), legend=None)
-# ).properties(
-# )
+
+
 
 
 
@@ -218,7 +253,7 @@ with col1 :
 
   # lightgreyteal
   st.markdown("**:blue[반려동물 보유 비율]**")
-#   st.altair_chart(bar_chart3, use_container_width=True)
+  st.altair_chart(bar_chart3, use_container_width=True)
   st.info('자치구별 반려동물 보유비율입니다.', icon="ℹ️")
 
 
@@ -276,51 +311,7 @@ parksg_gu=(park_info.groupby(park_info['공원주소']).count())[["공원명"]].
 parksg_gu = parksg_gu.rename(columns={'공원명': '공원 수', '공원주소':'자치구'})
 
 
-# fig = px.bar(parksg_gu, x=parksg_gu.index, y='공원 수', color='공원 수',
-#              color_continuous_scale='Greens',
-#              labels={'x': '자치구', 'y': '공원 수'},
-#              height=600)
-# fig.update_layout(
-#     title='서울시 자치구별 공원 수',
-#     xaxis_title='',
-#     yaxis_title='공원 수',
-#     font=dict(size=18)
-# )
-# fig.show()
 
-"""# 반려동물 유무 비율"""
-
-# CSV 파일 읽어오기
-pet_have = pd.read_csv('data/반려동물+유무+및+취득+경로_20230314161547.csv')
-
-# 특정열에 특정값을 가진 행 추출하기
-pet_have2 = pet_have[pet_have['구분별(1)'].str.contains("지역소분류")]
-
-# 추출된 데이터를 새로운 CSV 파일로 저장하기
-pet_have2.to_csv('반려동물 유무.csv', index=False)
-
-
-pet_have_dict = dict(zip(pet_have2['구분별(2)'], pet_have2['2021']))
-pet_have_dict2 = copy.deepcopy(pet_have_dict)
-pet_have_dict_sorted_items = sorted(pet_have_dict2.items(), key=lambda x: x[1], reverse=True)
-pet_have_dict_sorted = dict(pet_have_dict_sorted_items)
-
-pet_have_df = pd.DataFrame(pet_have_dict_sorted.items(), columns=['gu', 'data'])
-pet_have_df['data'] = pet_have_df['data'].astype('float')
-pet_have_df.sort_values('data', inplace=True, ascending=False)
-
-
-# fig = px.bar(pet_have_df, x='gu', y='data', color='data',
-#              color_continuous_scale='purp',
-#              labels={'gu': '자치구', 'data': '주민 반려동물 보유 비율'},
-#              height=600)
-# fig.update_layout(
-#     title='서울시 자치구별 주민 반려동물 보유 비율',
-#     xaxis_title='',
-#     yaxis_title='주민 반려동물 보유 비율(%)',
-#     font=dict(size=18)
-# )
-# fig.show()
 
 
 """# 종합 순위"""
