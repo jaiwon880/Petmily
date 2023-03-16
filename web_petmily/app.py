@@ -3,7 +3,6 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib
 matplotlib.use('Agg')       #서버에서, 화면에 표시하기 위해서 필요
 import seaborn as sns
 import altair as alt               ##https://altair-viz.github.io/
@@ -24,11 +23,34 @@ st.write(
     """
 )
 
+import plotly.express as px
+import streamlit as st
 
-st.bar_chart(data=petCon, x="소재지전체주소", y="개방서비스명", use_container_width=True)
+df = px.data.gapminder()
+
+fig = px.scatter(
+    df.query("year==2007"),
+    x="gdpPercap",
+    y="lifeExp",
+    size="pop",
+    color="continent",
+    hover_name="country",
+    log_x=True,
+    size_max=60,
+)
+
+tab1, tab2 = st.tabs(["Streamlit theme (default)", "Plotly native theme"])
+with tab1:
+    # Use the Streamlit theme.
+    # This is the default. So you can also omit the theme argument.
+    st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+with tab2:
+    # Use the native Plotly theme.
+    st.plotly_chart(fig, theme=None, use_container_width=True)
 
 
 st.sidebar.title('시간 순삭 유튜브 추천👇')
+
 add_selectbox = st.sidebar.selectbox("주인장 추천 채널",
  ["지식한입", "ITSub잇섭", "느낌적인느낌","호갱구조대", "너 진짜 똑독하다", "슈카월드"])
 
