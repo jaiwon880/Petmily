@@ -1,12 +1,9 @@
 # streamlit 라이브러리 호출
 import streamlit as st
 import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-matplotlib.use('Agg')       #서버에서, 화면에 표시하기 위해서 필요
+import pandas as pd 
 import seaborn as sns
 import altair as alt         
-import plotly.express as px
 petCon = pd.read_csv('../data/동물위탁관리업.csv')
 
 # 마크다운을 기반으로 한 꾸미기 기능 작동
