@@ -7,7 +7,7 @@ st.title("팻밀리")
 
 st.subheader("반려견 행복지도")
 
-image = Image.open(image/'서울동물병원.jpg')
+image = Image.open(image/'PetHospital.png')
 
 st.image(image, caption='동물병원')
 
