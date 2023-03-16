@@ -1,5 +1,14 @@
 # streamlit 라이브러리 호출
 import streamlit as st
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')       #서버에서, 화면에 표시하기 위해서 필요
+import seaborn as sns
+import altair as alt               ##https://altair-viz.github.io/
+import plotly.express as px
+petCon = pd.read_csv('../data/동물위탁관리업.csv')
 
 # 마크다운을 기반으로 한 꾸미기 기능 작동
 # 가장 간단한 웹 사이트를 만드는 방법
@@ -8,14 +17,16 @@ import streamlit as st
 # """ """ 여러 줄을 묶어서 표시할 수 있는 문자열
 # ''' ''' (동일 기능)
 
-st.balloons()
-
 st.write(
     """
     ## 코딩 유튜브 채널 추천❗  
     ---
     """
 )
+
+
+st.bar_chart(data=petCon, *, x="소재지전체주소", y="개방서비스명", use_container_width=True)
+
 
 st.sidebar.title('시간 순삭 유튜브 추천👇')
 add_selectbox = st.sidebar.selectbox("주인장 추천 채널",
