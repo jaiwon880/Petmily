@@ -11,9 +11,9 @@ import seaborn as sns
 imoprt streamlit as st
 
 #한글 폰트 처리
-!sudo apt-get install -y fonts-nanum
-!sudo fc-cache -fv
-!rm ~/.cache/matplotlib -rf
+# !sudo apt-get install -y fonts-nanum
+# !sudo fc-cache -fv
+# !rm ~/.cache/matplotlib -rf
 
 #한글 폰트를 나눔폰트로 설정
 plt.rc('font', family='NanumBarunGothic')
