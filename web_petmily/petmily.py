@@ -1,4 +1,4 @@
-# import plotly.express as px
+import plotly.express as px
 import altair as alt
 import streamlit as st
 import pandas as pd
@@ -114,6 +114,23 @@ sph_sort = sph_gu.sort_values(by=['사업장명'], ascending=False)
 # 소재지 전체주소 별 사업장 수 계산
 sph_sort2 = sph.groupby('소재지전체주소').count().reset_index()
 sph_sort3 = sph_sort2.sort_values(by=['사업장명'], ascending=False)
+
+
+
+fig = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
+             color_continuous_scale='Blues',
+             labels={'x': '자치구', 'y': '동물병원 수'},
+             height=600)
+fig.update_layout(
+    title='서울시 자치구별 동물병원 수',
+    xaxis_title='',
+    yaxis_title='동물병원 수',
+    font=dict(size=18)
+)
+fig.show()
+
+
+
 
 
 # 알테어 바 차트 생성
