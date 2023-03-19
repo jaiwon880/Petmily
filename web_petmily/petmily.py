@@ -40,7 +40,8 @@ gu_dict = {
           "노원구":'https://user-images.githubusercontent.com/102681611/225594115-6594e617-6d97-4bd6-9b6d-b34a68a2f9df.png',
           "도봉구":'https://user-images.githubusercontent.com/102681611/225594214-ef04e6c6-c026-4b80-89b9-1635f9d306e9.png',
           "강북구":'https://user-images.githubusercontent.com/102681611/225593468-a0255c87-c861-4716-8774-818d305fcca1.png',
-"동대문구":'https://user-images.githubusercontent.com/126433780/225597051-414a4745-ad14-48a8-badc-e75fd20ca4e5.png'}
+"동대문구":'https://user-images.githubusercontent.com/126433780/225597051-414a4745-ad14-48a8-badc-e75fd20ca4e5.png',
+"종로구":"https://user-images.githubusercontent.com/71927533/226177692-54d13622-66e3-468d-90e0-3feaf9bab914.png"}
 
 st.sidebar.title('자치구를 선택해주세요! 👇')
 choice = st.sidebar.selectbox("자치구 선택",
@@ -187,10 +188,8 @@ fig_beauty.update_layout(
 
 # 반려동물 CSV 파일 읽어오기
 pet_have = pd.read_csv('web_petmily/반려동물+유무+및+취득+경로_20230314161547.csv')
-
 # 특정열에 특정값을 가진 행 추출하기
 pet_have2 = pet_have[pet_have['구분별(1)'].str.contains("지역소분류")]
-
 # 추출된 데이터를 새로운 CSV 파일로 저장하기
 pet_have2.to_csv('반려동물 유무.csv', index=False)
 
@@ -202,14 +201,14 @@ pet_have_dict_sorted = dict(pet_have_dict_sorted_items)
 
 pet_have_df = pd.DataFrame(pet_have_dict_sorted.items(), columns=['gu', 'data'])
 pet_have_df['data'] = pet_have_df['data'].astype('float')
-pet_have_df =pet_have_df.sort_values('data', inplace=True, ascending=False)
+pet_have_df.sort_values('data', inplace=True, ascending=False)
 
 
-fig_tf = px.bar(pet_have_df, x='gu', y='data', color='data',
+fig = px.bar(pet_have_df, x='gu', y='data', color='data',
              color_continuous_scale='purp',
              labels={'gu': '자치구', 'data': '주민 반려동물 보유 비율'},
              height=600)
-fig_tf.update_layout(
+fig.update_layout(
     title='서울시 자치구별 주민 반려동물 보유 비율',
     xaxis_title='',
     yaxis_title='주민 반려동물 보유 비율(%)',
