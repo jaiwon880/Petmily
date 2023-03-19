@@ -186,7 +186,7 @@ fig_beauty.update_layout(
 
 
 # 반려동물 CSV 파일 읽어오기
-pet_have = pd.read_csv('반려동물+유무+및+취득+경로_20230314161547.csv')
+pet_have = pd.read_csv('web_petmily/반려동물+유무+및+취득+경로_20230314161547.csv')
 
 # 특정열에 특정값을 가진 행 추출하기
 pet_have2 = pet_have[pet_have['구분별(1)'].str.contains("지역소분류")]
