@@ -135,10 +135,10 @@ fig_beauty = px.bar(spb_sort, x=spb_sort.index, y='업체명', color='업체명'
              height=500)
 fig_beauty.update_layout(
     title='서울시 자치구별 애견 미용실 수',
+     showlegend=False,
     xaxis_title='',
     yaxis_title='애견 미용실 수',
     font=dict(size=3),
-    showlegend=False,
 )
 fig_beauty.update_xaxes(tickfont_size=7,tickangle=45)
 
@@ -177,11 +177,11 @@ fig_tf = px.bar(pet_have_df, x='gu', y='data', color='data',
              labels={'gu': '자치구', 'data': '주민 반려동물 보유 비율'},
              height=500, width=450)
 fig_tf.update_layout(
+    showlegend=False,
     title='서울시 자치구별 주민 반려동물 보유 비율',
     xaxis_title='',
     yaxis_title='주민 반려동물 보유 비율(%)',
     font=dict(size=3),
-    showlegend=False,
 )
 fig_tf.update_xaxes(tickfont_size=7,tickangle=45)
 
