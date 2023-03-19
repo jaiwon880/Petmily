@@ -90,7 +90,7 @@ sph_sort3 = sph_sort2.sort_values(by=['사업장명'], ascending=False)
 fig_hos = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
              color_continuous_scale='Blues',
              labels={'x': '자치구', 'y': '동물병원 수'},
-             height=500, width=450)
+             height=500)
 fig_hos.update_layout(
     title='서울시 자치구별 동물병원 수',
     showlegend=False,
@@ -132,14 +132,15 @@ spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
 fig_beauty = px.bar(spb_sort, x=spb_sort.index, y='업체명', color='업체명',
              color_continuous_scale='plotly3',
              labels={'x': '자치구', 'y': '애견 미용실 수'},
-             height=600, width=450)
+             height=500)
 fig_beauty.update_layout(
     title='서울시 자치구별 애견 미용실 수',
     xaxis_title='',
     yaxis_title='애견 미용실 수',
-    font=dict(size=18),
+    font=dict(size=3),
     showlegend=False,
 )
+fig_hos.update_xaxes(tickfont_size=7,tickangle=45)
 
 # # 애견 미용 Altair 차트
 # bar_chart2 = alt.Chart(spb_sort).mark_bar(
@@ -174,14 +175,15 @@ pet_have_df.sort_values('data', inplace=True, ascending=False)
 fig_tf = px.bar(pet_have_df, x='gu', y='data', color='data',
              color_continuous_scale='purp',
              labels={'gu': '자치구', 'data': '주민 반려동물 보유 비율'},
-             height=600)
+             height=500
 fig_tf.update_layout(
     title='서울시 자치구별 주민 반려동물 보유 비율',
     xaxis_title='',
     yaxis_title='주민 반려동물 보유 비율(%)',
-    font=dict(size=18),
+    font=dict(size=3),
     showlegend=False,
 )
+fig_hos.update_xaxes(tickfont_size=7,tickangle=45)
 
 # 반려동물 보유 비율 Altair 차트
 # bar_chart3 = alt.Chart(pet_have_df).mark_bar(
@@ -220,14 +222,15 @@ spc_gu.sort_values('data', inplace=True, ascending=False)
 fig_con = px.bar(spc_gu, x='gu', y='data', color='data',
              color_continuous_scale='Brwnyl',
              labels={'gu': '자치구', 'data': '반려동물 위탁 업체 수'},
-             height=600)
+             height=500)
 fig_con.update_layout(
     title='서울시 자치구별 반려동물 위탁 업체 수',
     xaxis_title='',
     yaxis_title='반려동물 위탁 업체 수',
-    font=dict(size=18),
+    font=dict(size=3),
     showlegend=False,
 )
+fig_hos.update_xaxes(tickfont_size=7,tickangle=45)
 
 # 반려동물 위탁 업체 수 Altair 차트
 # bar_chart3 = alt.Chart(spc_gu).mark_bar(
@@ -266,14 +269,15 @@ parksg_gu = parksg_gu.rename(columns={'공원명': '공원 수', '공원주소':
 fig_park = px.bar(parksg_gu, x=parksg_gu.index, y='공원 수', color='공원 수',
              color_continuous_scale='Greens',
              labels={'x': '자치구', 'y': '공원 수'},
-             height=600)
+             height=500)
 fig_park.update_layout(
     title='서울시 자치구별 공원 수',
     xaxis_title='',
     yaxis_title='공원 수',
-    font=dict(size=18),
+    font=dict(size=3),
     showlegend=False,
 )
+fig_hos.update_xaxes(tickfont_size=7,tickangle=45)
 
 
 # 종합 순위 데이터 가공
@@ -345,14 +349,15 @@ result1_df = result1.to_frame(name='합계').reset_index().rename(columns={'inde
 fig_syn = px.bar(result1_df, x='C', y='합계', color='합계',
              color_continuous_scale='greys',
              labels={'C': '자치구', '합계': '종합순위'},
-             height=600)
+             height=500)
 fig_syn.update_layout(
     title='서울시 자치구별 반려동물 편의지수 종합순위',
     xaxis_title='',
     yaxis_title='편의지수 종합순위',
-    font=dict(size=18),
+    font=dict(size=3),
     showlegend=False,
 )
+fig_hos.update_xaxes(tickfont_size=7,tickangle=45)
 
 
 
