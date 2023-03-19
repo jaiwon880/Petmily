@@ -416,31 +416,30 @@ with col2 :
 
 
 
-"""## 방사형 차트"""
 
-# result2 = result[['동물병원순위', '동물미용업체순위', '위탁 업체 수',"보유 비율 순위","공원순위"]]
-# result2
+result2 = result[['동물병원순위', '동물미용업체순위', '위탁 업체 수',"보유 비율 순위","공원순위"]]
+result2
 
 # 데이터 프레임 생성
-# df = pd.DataFrame(result2, index=address)
-# # 오각형 방사형 차트 생성 및 출력
-# for i in range(len(address)):
-#     gn = df.loc[address[i]]
-#     # 오각형 방사형 차트 생성
-#     fig = px.line_polar(
-#         r=gn.values,
-#         theta=gn.index,
-#         line_close=True,
-#     )
-#     fig.update_traces(fill='toself')
-#     # 차트 레이아웃 설정
-#     fig.update_layout(
-#         polar=dict(
-#             radialaxis=dict(visible=True, range=[0, 30]),
-#             angularaxis=dict(direction="clockwise"),
-#         ),
-#         showlegend=False,
-#         title=f"{address[i]} 종합 시각화 차트"
-#     )
-#     # 차트 출력
-#     fig.show()
+df = pd.DataFrame(result2, index=address)
+# 오각형 방사형 차트 생성 및 출력
+for i in range(len(address)):
+    gn = df.loc[address[i]]
+    # 오각형 방사형 차트 생성
+    fig = px.line_polar(
+        r=gn.values,
+        theta=gn.index,
+        line_close=True,
+    )
+    fig.update_traces(fill='toself')
+    # 차트 레이아웃 설정
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(visible=True, range=[0, 30]),
+            angularaxis=dict(direction="clockwise"),
+        ),
+        showlegend=False,
+        title=f"{address[i]} 종합 시각화 차트"
+    )
+    # 차트 출력
+    fig.show()
