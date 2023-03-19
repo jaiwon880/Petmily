@@ -92,7 +92,6 @@ fig_hos = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장�
              labels={'x': '자치구', 'y': '동물병원 수'},
              height=400, width=450)
 fig_hos.update_layout(
-    title='서울시 자치구별 동물병원 수',
     showlegend=False,
     xaxis_title='',
     yaxis_title='동물병원 수',
