@@ -204,11 +204,11 @@ pet_have_df['data'] = pet_have_df['data'].astype('float')
 pet_have_df.sort_values('data', inplace=True, ascending=False)
 
 
-fig = px.bar(pet_have_df, x='gu', y='data', color='data',
+fig_tf = px.bar(pet_have_df, x='gu', y='data', color='data',
              color_continuous_scale='purp',
              labels={'gu': '자치구', 'data': '주민 반려동물 보유 비율'},
              height=600)
-fig.update_layout(
+fig_tf.update_layout(
     title='서울시 자치구별 주민 반려동물 보유 비율',
     xaxis_title='',
     yaxis_title='주민 반려동물 보유 비율(%)',
