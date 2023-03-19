@@ -16,38 +16,10 @@ st.write(
     """
 )
 
-gu_dict = {
-          "양천구":'https://user-images.githubusercontent.com/126433780/225597044-dce9aa85-d5f0-4fd2-aa74-1df2a9c5f800.png',
-          "구로구":'https://user-images.githubusercontent.com/102681611/225593175-da161582-efac-4ce2-9b4b-baec38bbe975.png',
-          "금천구":'https://user-images.githubusercontent.com/102681611/225593189-c19a75f6-422f-4d61-a32d-dd27a53fb363.png',
-          "영등포구":'https://user-images.githubusercontent.com/126433780/225597045-30d52d72-756b-4610-ab49-296226fc9896.png',
-          "동작구":'https://user-images.githubusercontent.com/126433780/225597053-153eff9f-d68e-482b-a927-f43a2c49f548.png',
-          "관악구":'https://user-images.githubusercontent.com/102681611/225593571-f1d70f63-ba65-4caf-9630-6529473f3ba2.png',
-          "강남구":'https://user-images.githubusercontent.com/102681611/225593391-7293582f-497d-456d-91e0-f67ba4725dd0.png',
-          "송파구":'https://user-images.githubusercontent.com/126433780/225597041-40132bf2-71d8-4fb4-a811-914799695761.png',
-          "강동구":'https://user-images.githubusercontent.com/102681611/225593451-d53bb67e-ee80-4524-a0a5-e6328cbb6cdf.png',
-          "마포구":'https://user-images.githubusercontent.com/126433780/225597056-24513e20-180d-4317-9632-0eca1a17e9ef.png',
-          "은평구":'https://user-images.githubusercontent.com/126433780/225597044-dce9aa85-d5f0-4fd2-aa74-1df2a9c5f800.png',
-          "서대문구":'https://user-images.githubusercontent.com/126433780/225597058-65f252b1-7163-4965-ab08-ebe814c22962.png',
-          "서초구":'https://user-images.githubusercontent.com/126433780/225597062-6f4dacfb-7239-4486-bdab-c44f66ee8127.png',
-          "중구":'https://user-images.githubusercontent.com/126433780/225595139-66437a9c-b19f-4ef1-9668-96f3dd25180e.png',
-          "용산구":'https://user-images.githubusercontent.com/126433780/225595152-55f7eb4d-53fd-4cd7-b8ac-3d02a7527aff.png',
-          "성북구":'https://user-images.githubusercontent.com/126433780/225597038-7a0b1988-0cab-46e0-88d8-6fba4bd70283.png',
-          "성동구":'https://user-images.githubusercontent.com/126433780/225597032-1e412772-2abb-4505-8568-92855eae1ff4.png',
-          "강서구":'https://user-images.githubusercontent.com/102681611/225593510-12c927fa-4aed-4548-b5a8-b65e80ebf7bd.png',
-          "광진구":'https://user-images.githubusercontent.com/102681611/225593153-6192fbec-b2cd-49b4-a7c9-504e85cb00c3.png',
-          "중랑구":'https://user-images.githubusercontent.com/126433780/225595146-e82a0c58-ef46-46b2-b23b-23555ffb7648.png',
-          "노원구":'https://user-images.githubusercontent.com/102681611/225594115-6594e617-6d97-4bd6-9b6d-b34a68a2f9df.png',
-          "도봉구":'https://user-images.githubusercontent.com/102681611/225594214-ef04e6c6-c026-4b80-89b9-1635f9d306e9.png',
-          "강북구":'https://user-images.githubusercontent.com/102681611/225593468-a0255c87-c861-4716-8774-818d305fcca1.png',
-"동대문구":'https://user-images.githubusercontent.com/126433780/225597051-414a4745-ad14-48a8-badc-e75fd20ca4e5.png',
-"종로구":"https://user-images.githubusercontent.com/71927533/226177692-54d13622-66e3-468d-90e0-3feaf9bab914.png"}
-
+address = ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구","중랑구"]
 st.sidebar.title('자치구를 선택해주세요! 👇')
-choice = st.sidebar.selectbox("자치구 선택",
-["강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구","중랑구"]
+selected_region = st.sidebar.selectbox("자치구 선택", address
 )
-st.image(gu_dict[choice], use_column_width=True)
 
 
 
@@ -382,31 +354,34 @@ fig_syn.update_layout(
 
 result2 = result[['동물병원순위', '동물미용업체순위', '위탁 업체 수',"보유 비율 순위","공원순위"]]
 
+
+
 # 오각형 방사형 차트 생성 및 출력
+
+# 데이터 프레임 생성
 df = pd.DataFrame(result2, index=address)
+# 사이드바에서 자치구 선택
+# 선택한 자치구에 해당하는 데이터 추출
+selected_data = df.loc[selected_region]
 
-for i in range(len(address)):
-    gn = df.loc[address[i]]
-    # 오각형 방사형 차트 생성
-    fig_radar = px.line_polar(
-        r=gn.values,
-        theta=gn.index,
-        line_close=True,
-    )
-    fig_radar.update_traces(fill='toself')
-    # 차트 레이아웃 설정
-    fig_radar.update_layout(
-        polar=dict(
-            radialaxis=dict(visible=True, range=[0, 30]),
-            angularaxis=dict(direction="clockwise"),
-        ),
-        showlegend=False,
-        title=f"{address[i]} 종합 시각화 차트"
-    )
-    # 차트 출력
-    fig_radar.show()
+# 방사형 차트 생성
+fig_radar = px.line_polar(
+    r=selected_data.values,
+    theta=selected_data.index,
+    line_close=True,
+)
+fig_radar.update_traces(fill='toself')
 
-
+# 차트 레이아웃 설정
+fig_radar.update_layout(
+    polar=dict(
+        radialaxis=dict(visible=True, range=[0, 30]),
+        angularaxis=dict(direction="clockwise"),
+    ),
+    showlegend=False,
+    title=f"{selected_region} 종합 시각화 차트"
+)
+# 차트 출력
 st.plotly_chart(fig_radar, theme="streamlit", use_container_width=True)
 
 
