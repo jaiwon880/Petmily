@@ -404,14 +404,14 @@ with col1 :
   st.plotly_chart(fig_beauty, theme="streamlit", use_container_width=True)
   st.info('자치구별 동물 미용업체수 입니다.', icon="ℹ️")
 
-  st.plotly_chart(fig_tf, theme="streamlit", use_container_width=True)
+  st.plotly_chart(fig_tf, theme="streamlit")
   st.info('자치구별 반려동물 보유비율입니다.', icon="ℹ️")
 
 
 
 with col2 :
   # column 2 에 담을 내용
-  st.plotly_chart(fig_con, theme="streamlit", use_container_width=True)
+  st.plotly_chart(fig_con, theme="streamlit")
   st.info('자치구별 동물 위탁시설 수 입니다.', icon="ℹ️")
   
   st.plotly_chart(fig_park, theme="streamlit", use_container_width=True)
