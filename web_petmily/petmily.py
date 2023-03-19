@@ -90,7 +90,7 @@ sph_sort3 = sph_sort2.sort_values(by=['사업장명'], ascending=False)
 fig_hos = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
              color_continuous_scale='Blues',
              labels={'x': '자치구', 'y': '동물병원 수'},
-             height=400, width=500)
+             height=400, width=450)
 fig_hos.update_layout(
     title='서울시 자치구별 동물병원 수',
     showlegend=False,
@@ -98,7 +98,7 @@ fig_hos.update_layout(
     yaxis_title='동물병원 수',
     font=dict(size=3),
 )
-fig_hos.update_xaxes(tickfont_size=8,tickangle=45)
+fig_hos.update_xaxes(tickfont_size=7,tickangle=45)
 
 
 # # 동물 병원 수 Altair 차트 
