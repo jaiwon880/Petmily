@@ -96,7 +96,7 @@ fig_hos.update_layout(
     xaxis_title='',
     yaxis_title='동물병원 수',
     font=dict(size=3),
-    showlegend=False,
+    showlegend=True,
 )
 
 
