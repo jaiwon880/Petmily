@@ -92,6 +92,7 @@ fig_hos = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장�
              labels={'x': '자치구', 'y': '동물병원 수'},
              height=400, width=450)
 fig_hos.update_layout(
+    title='서울시 자치구별 동물병원 수',
     showlegend=False,
     xaxis_title='',
     yaxis_title='동물병원 수',
@@ -131,7 +132,7 @@ spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
 fig_beauty = px.bar(spb_sort, x=spb_sort.index, y='업체명', color='업체명',
              color_continuous_scale='plotly3',
              labels={'x': '자치구', 'y': '애견 미용실 수'},
-             height=600)
+             height=600, width=450)
 fig_beauty.update_layout(
     title='서울시 자치구별 애견 미용실 수',
     xaxis_title='',
@@ -392,32 +393,26 @@ col1,col2 = st.columns([1,1])
 
 with col1 :
   # column 1 에 담을 내용
-  st.markdown("**:blue[동물 병원] 이용 순위**")
   st.plotly_chart(fig_hos, theme="streamlit")
   st.info('자치구별 동물 병원수 입니다.', icon="ℹ️")
   
-  st.markdown("**:blue[동물 미용업체] 이용 순위**")
-  st.plotly_chart(fig_beauty, theme="streamlit", use_container_width=True)
+  st.plotly_chart(fig_beauty, theme="streamlit")
   st.info('자치구별 동물 미용업체수 입니다.', icon="ℹ️")
 
-  st.markdown("**:blue[반려동물 보유 비율]**")
-  st.plotly_chart(fig_tf, theme="streamlit", use_container_width=True)
+  st.plotly_chart(fig_tf, theme="streamlit")
   st.info('자치구별 반려동물 보유비율입니다.', icon="ℹ️")
 
 
 
 with col2 :
   # column 2 에 담을 내용
-  st.markdown("**:blue[동물 위탁시설] 이용 순위**")
-  st.plotly_chart(fig_con, theme="streamlit", use_container_width=True)
+  st.plotly_chart(fig_con, theme="streamlit")
   st.info('자치구별 동물 위탁시설 수 입니다.', icon="ℹ️")
   
-  st.markdown("**:blue[공원 시설] 이용 순위**")
-  st.plotly_chart(fig_park, theme="streamlit", use_container_width=True)
+  st.plotly_chart(fig_park, theme="streamlit")
   st.info('자치구별 공원 시설 수 입니다.', icon="ℹ️")
 
-  st.markdown("**:blue[자치구별 종합] 순위**")
-  st.plotly_chart(fig_syn, theme="streamlit", use_container_width=True)
+  st.plotly_chart(fig_syn, theme="streamlit")
   st.info('자치구별 종합 순위 입니다.', icon="ℹ️")
   
 # 데이터 출처 :
