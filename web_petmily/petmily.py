@@ -394,7 +394,7 @@ st.plotly_chart(fig_radar, theme="streamlit", use_container_width=True)
 
 
 col1,col2 = st.columns([1,1])
-# 공간을 2:3 으로 분할하여 col1과 col2라는 이름을 가진 컬럼을 생성
+# 공간을 1:1 으로 분할하여 col1과 col2라는 이름을 가진 컬럼을 생성
 
 with col1 :
   # column 1 에 담을 내용
