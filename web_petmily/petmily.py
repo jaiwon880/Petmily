@@ -98,7 +98,8 @@ fig_hos.update_layout(
     title='서울시 자치구별 동물병원 수',
     xaxis_title='',
     yaxis_title='동물병원 수',
-    font=dict(size=18)
+    font=dict(size=18),
+    showlegend=False,
 )
 
 
@@ -138,7 +139,8 @@ fig_beauty.update_layout(
     title='서울시 자치구별 애견 미용실 수',
     xaxis_title='',
     yaxis_title='애견 미용실 수',
-    font=dict(size=18)
+    font=dict(size=18),
+    showlegend=False,
 )
 
 # # 애견 미용 Altair 차트
@@ -179,7 +181,8 @@ fig_tf.update_layout(
     title='서울시 자치구별 주민 반려동물 보유 비율',
     xaxis_title='',
     yaxis_title='주민 반려동물 보유 비율(%)',
-    font=dict(size=18)
+    font=dict(size=18),
+    showlegend=False,
 )
 
 # 반려동물 보유 비율 Altair 차트
@@ -224,7 +227,8 @@ fig_con.update_layout(
     title='서울시 자치구별 반려동물 위탁 업체 수',
     xaxis_title='',
     yaxis_title='반려동물 위탁 업체 수',
-    font=dict(size=18)
+    font=dict(size=18),
+    showlegend=False,
 )
 
 # 반려동물 위탁 업체 수 Altair 차트
@@ -269,7 +273,8 @@ fig_park.update_layout(
     title='서울시 자치구별 공원 수',
     xaxis_title='',
     yaxis_title='공원 수',
-    font=dict(size=18)
+    font=dict(size=18),
+    showlegend=False,
 )
 
 
@@ -347,7 +352,8 @@ fig_syn.update_layout(
     title='서울시 자치구별 반려동물 편의지수 종합순위',
     xaxis_title='',
     yaxis_title='편의지수 종합순위',
-    font=dict(size=18)
+    font=dict(size=18),
+    showlegend=False,
 )
 
 
