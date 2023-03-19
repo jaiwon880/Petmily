@@ -174,7 +174,7 @@ pet_have_df.sort_values('data', inplace=True, ascending=False)
 
 fig_tf = px.bar(pet_have_df, x='gu', y='data', color='data',
              color_continuous_scale='purp',
-             labels={'gu': '자치구', 'data': '주민 반려동물 보유 비율'},
+             labels={'gu': '자치구', 'data': '반려동물 보유 비율'},
              height=400, width=450)
 fig_tf.update_layout(
     showlegend=False,
