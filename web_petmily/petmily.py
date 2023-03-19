@@ -93,7 +93,7 @@ fig_hos = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장�
              height=400, width=600)
 fig_hos.update_layout(
     title='서울시 자치구별 동물병원 수',
-    showlegend=True,
+    showlegend=False,
     xaxis_title='',
     yaxis_title='동물병원 수',
     font=dict(size=3),
@@ -357,8 +357,6 @@ fig_syn.update_layout(
 
 result2 = result[['동물병원순위', '동물미용업체순위', '위탁 업체 수',"보유 비율 순위","공원순위"]]
 
-
-
 # 오각형 방사형 차트 생성 및 출력
 
 # 데이터 프레임 생성
@@ -395,7 +393,7 @@ col1,col2 = st.columns([1,1])
 with col1 :
   # column 1 에 담을 내용
   st.markdown("**:blue[동물 병원] 이용 순위**")
-  st.plotly_chart(fig_hos, theme="streamlit", use_container_width=True)
+  st.plotly_chart(fig_hos, theme="streamlit")
   st.info('자치구별 동물 병원수 입니다.', icon="ℹ️")
   
   st.markdown("**:blue[동물 미용업체] 이용 순위**")
