@@ -426,14 +426,14 @@ df = pd.DataFrame(result2, index=address)
 for i in range(len(address)):
     gn = df.loc[address[i]]
     # 오각형 방사형 차트 생성
-    fig = px.line_polar(
+    fig_radar = px.line_polar(
         r=gn.values,
         theta=gn.index,
         line_close=True,
     )
-    fig.update_traces(fill='toself')
+    fig_radar.update_traces(fill='toself')
     # 차트 레이아웃 설정
-    fig.update_layout(
+    fig_radar.update_layout(
         polar=dict(
             radialaxis=dict(visible=True, range=[0, 30]),
             angularaxis=dict(direction="clockwise"),
@@ -442,4 +442,4 @@ for i in range(len(address)):
         title=f"{address[i]} 종합 시각화 차트"
     )
     # 차트 출력
-    fig.show()
+fig_radar.show()
