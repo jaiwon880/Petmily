@@ -116,11 +116,12 @@ sph_sort2 = sph.groupby('소재지전체주소').count().reset_index()
 sph_sort3 = sph_sort2.sort_values(by=['사업장명'], ascending=False)
 
 
-fig = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
+# 동물병원 수 plotly 차트
+fig_hos = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
              color_continuous_scale='Blues',
              labels={'x': '자치구', 'y': '동물병원 수'},
              height=600)
-fig.update_layout(
+fig_hos.update_layout(
     title='서울시 자치구별 동물병원 수',
     xaxis_title='',
     yaxis_title='동물병원 수',
@@ -128,17 +129,14 @@ fig.update_layout(
 )
 
 
-
-
-
-# 알테어 바 차트 생성
-bar_chart = alt.Chart(sph_sort3).mark_bar(
-).encode(
-    x=alt.X('소재지전체주소',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
-    y=alt.Y('사업장명',axis=alt.Axis(title=''),sort='-y'),
-    color=alt.Color('소재지전체주소', scale=alt.Scale(scheme='darkblue'), legend=None)
-).properties(
-)
+# # 동물 병원 수 Altair 차트 
+# bar_chart = alt.Chart(sph_sort3).mark_bar(
+# ).encode(
+#     x=alt.X('소재지전체주소',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
+#     y=alt.Y('사업장명',axis=alt.Axis(title=''),sort='-y'),
+#     color=alt.Color('소재지전체주소', scale=alt.Scale(scheme='darkblue'), legend=None)
+# ).properties(
+# )
 
 
 #@title 서울시 애견미용업장 파일 불러오기
@@ -164,39 +162,61 @@ spb_sort = spb.groupby('소재지').count().reset_index()
 spb_sort = spb_sort.sort_values(by=['업체명'], ascending=False)
 
 
-# 애견 미용 차트
-bar_chart2 = alt.Chart(spb_sort).mark_bar(
-).encode(
-    x=alt.X('소재지',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
-    y=alt.Y('업체명',axis=alt.Axis(title=''), sort='-y'),
-    color=alt.Color('소재지', scale=alt.Scale(scheme='pinkyellowgreen'), legend=None)
-).properties(
+fig_beauty = px.bar(spb_sort, x=spb_sort.index, y='업체명', color='업체명',
+             color_continuous_scale='plotly3',
+             labels={'x': '자치구', 'y': '애견 미용실 수'},
+             height=600)
+fig_beauty.update_layout(
+    title='서울시 자치구별 애견 미용실 수',
+    xaxis_title='',
+    yaxis_title='애견 미용실 수',
+    font=dict(size=18)
 )
 
+# # 애견 미용 Altair 차트
+# bar_chart2 = alt.Chart(spb_sort).mark_bar(
+# ).encode(
+#     x=alt.X('소재지',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
+#     y=alt.Y('업체명',axis=alt.Axis(title=''), sort='-y'),
+#     color=alt.Color('소재지', scale=alt.Scale(scheme='pinkyellowgreen'), legend=None)
+# ).properties(
+# )
 
 
 
-# """# 반려동물 유무 비율"""
 
-# CSV 파일 읽어오기
-# pet_have = pd.read_csv('반려동물+유무+및+취득+경로_20230314161547.csv')
+# 반려동물 CSV 파일 읽어오기
+pet_have = pd.read_csv('반려동물+유무+및+취득+경로_20230314161547.csv')
 
-# # 특정열에 특정값을 가진 행 추출하기
-# pet_have2 = pet_have[pet_have['구분별(1)'].str.contains("지역소분류")]
+# 특정열에 특정값을 가진 행 추출하기
+pet_have2 = pet_have[pet_have['구분별(1)'].str.contains("지역소분류")]
 
-# # 추출된 데이터를 새로운 CSV 파일로 저장하기
-# pet_have2.to_csv('반려동물 유무.csv', index=False)
+# 추출된 데이터를 새로운 CSV 파일로 저장하기
+pet_have2.to_csv('반려동물 유무.csv', index=False)
 
 
-# pet_have_dict = dict(zip(pet_have2['구분별(2)'], pet_have2['2021']))
-# pet_have_dict2 = copy.deepcopy(pet_have_dict)
-# pet_have_dict_sorted_items = sorted(pet_have_dict2.items(), key=lambda x: x[1], reverse=True)
-# pet_have_dict_sorted = dict(pet_have_dict_sorted_items)
+pet_have_dict = dict(zip(pet_have2['구분별(2)'], pet_have2['2021']))
+pet_have_dict2 = copy.deepcopy(pet_have_dict)
+pet_have_dict_sorted_items = sorted(pet_have_dict2.items(), key=lambda x: x[1], reverse=True)
+pet_have_dict_sorted = dict(pet_have_dict_sorted_items)
 
-# pet_have_df = pd.DataFrame(pet_have_dict_sorted.items(), columns=['gu', 'data'])
-# pet_have_df['data'] = pet_have_df['data'].astype('float')
-# pet_have_df =pet_have_df.sort_values('data', inplace=True, ascending=False)
+pet_have_df = pd.DataFrame(pet_have_dict_sorted.items(), columns=['gu', 'data'])
+pet_have_df['data'] = pet_have_df['data'].astype('float')
+pet_have_df =pet_have_df.sort_values('data', inplace=True, ascending=False)
 
+
+fig_tf = px.bar(pet_have_df, x='gu', y='data', color='data',
+             color_continuous_scale='purp',
+             labels={'gu': '자치구', 'data': '주민 반려동물 보유 비율'},
+             height=600)
+fig_tf.update_layout(
+    title='서울시 자치구별 주민 반려동물 보유 비율',
+    xaxis_title='',
+    yaxis_title='주민 반려동물 보유 비율(%)',
+    font=dict(size=18)
+)
+
+# 반려동물 보유 비율 Altair 차트
 # bar_chart3 = alt.Chart(pet_have_df).mark_bar(
 # ).encode(
 #     x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
@@ -209,29 +229,41 @@ bar_chart2 = alt.Chart(spb_sort).mark_bar(
 
 # 서울시 애견위탁관리 파일 불러오기
 # 번호, 구분(위탁관리 포함된 문자만), 업체명, 소재지
-# spc = seoul_pet_con.groupby([seoul_pet_con["개방서비스명"],seoul_pet_con["소재지전체주소"]])
-# spc2 = spc[["소재지전체주소"]].count().rename(columns={"소재지전체주소": "개수"})
+spc = seoul_pet_con.groupby([seoul_pet_con["개방서비스명"],seoul_pet_con["소재지전체주소"]])
+spc2 = spc[["소재지전체주소"]].count().rename(columns={"소재지전체주소": "개수"})
 
 
-# dict1 = spc2.iloc[1:].loc[:,'개수'].reset_index(level=0, drop=True).to_dict()
-# dict2 = copy.deepcopy(dict1)
-# dict2_keys_list = list(dict2.keys())
-# dict2_values_list = list(dict2.values())
-# dict2_keys_list2 = [x + "구" for x in dict2_keys_list]
-# dict2_keys_list3 = [x.replace("서울특별시", "") for x in dict2_keys_list2]
+dict1 = spc2.iloc[1:].loc[:,'개수'].reset_index(level=0, drop=True).to_dict()
+dict2 = copy.deepcopy(dict1)
+dict2_keys_list = list(dict2.keys())
+dict2_values_list = list(dict2.values())
+dict2_keys_list2 = [x + "구" for x in dict2_keys_list]
+dict2_keys_list3 = [x.replace("서울특별시", "") for x in dict2_keys_list2]
 
-# done_dict = dict(zip(dict2_keys_list3, dict2_values_list))
+done_dict = dict(zip(dict2_keys_list3, dict2_values_list))
 
-# # 정렬
-# sorted_items = sorted(done_dict.items(), key=lambda x: x[1], reverse=True)
-# sorted_done_dict = dict(sorted_items)
+# 정렬
+sorted_items = sorted(done_dict.items(), key=lambda x: x[1], reverse=True)
+sorted_done_dict = dict(sorted_items)
 
-# spc_gu = pd.DataFrame(sorted_done_dict.items(), columns=['gu', 'data'])
-# spc_gu['data'] = spc_gu['data'].astype('float')
-# spc_gu = spc_gu.sort_values('data', inplace=True, ascending=False)
-# spc_gu
+spc_gu = pd.DataFrame(sorted_done_dict.items(), columns=['gu', 'data'])
+spc_gu['data'] = spc_gu['data'].astype('float')
+spc_gu = spc_gu.sort_values('data', inplace=True, ascending=False)
+spc_gu
 
+# 반려동물 위탁 업체 수
+fig_con = px.bar(spc_gu, x='gu', y='data', color='data',
+             color_continuous_scale='Brwnyl',
+             labels={'gu': '자치구', 'data': '반려동물 위탁 업체 수'},
+             height=600)
+fig_con.update_layout(
+    title='서울시 자치구별 반려동물 위탁 업체 수',
+    xaxis_title='',
+    yaxis_title='반려동물 위탁 업체 수',
+    font=dict(size=18)
+)
 
+# 반려동물 위탁 업체 수 Altair 차트
 # bar_chart3 = alt.Chart(spc_gu).mark_bar(
 # ).encode(
 #     x=alt.X('gu',axis=alt.Axis(title='',labelFontSize=2.0,labelAngle=-45.0)),
@@ -239,58 +271,6 @@ bar_chart2 = alt.Chart(spb_sort).mark_bar(
 #     color=alt.Color('gu', scale=alt.Scale(scheme='darkgold'), legend=None)
 # ).properties(
 # )
-
-
-
-
-col1,col2 = st.columns([1,1])
-# 공간을 2:3 으로 분할하여 col1과 col2라는 이름을 가진 컬럼을 생성
-
-with col1 :
-  # column 1 에 담을 내용
-  st.markdown("**:blue[동물 병원] 이용 순위**")
-  st.altair_chart(bar_chart, use_container_width=True)
-  st.info('자치구별 동물 병원수 입니다.', icon="ℹ️")
-  
-  
-  st.markdown("**:blue[동물 미용업체] 이용 순위**")
-  st.altair_chart(bar_chart2, use_container_width=True)
-  st.info('자치구별 동물 미용업체수 입니다.', icon="ℹ️")
-
-  # lightgreyteal
-  st.markdown("**:blue[반려동물 보유 비율]**")
-  st.plotly_chart(fig, theme="streamlit", use_container_width=True)
-#   st.altair_chart(bar_chart3, use_container_width=True)
-  st.info('자치구별 반려동물 보유비율입니다.', icon="ℹ️")
-
-
-
-  # # Text Area
-  # message = st.text_area("소개해 드린 추천 채널의 느낀점을 입력해 주세요", "이곳에 입력하세요.")
-  # if st.button("Submit", key='message'):
-  #   result = message.title()
-  #   st.success(result)
-
-
-with col2 :
-  # column 2 에 담을 내용
-  st.markdown("**:blue[동물 위탁시설] 이용 순위**")
-  st.image("https://user-images.githubusercontent.com/71927533/225590486-ad657a99-8baa-43cd-a474-b23882c96354.png")
-  st.info('자치구별 동물 위탁시설 수 입니다.', icon="ℹ️")
-  
-  
-  st.markdown("**:blue[공원 시설] 이용 순위**")
-  st.image("https://user-images.githubusercontent.com/71927533/225590467-a09340bf-ad2d-4674-8453-0b4447ff3d93.png")
-  st.info('자치구별 공원 시설 수 입니다.', icon="ℹ️")
-
-  st.markdown("**:blue[자치구별 종합] 순위**")
-  st.image("https://user-images.githubusercontent.com/71927533/225604387-ac259b04-2a73-48ee-8b3d-296f9cb8f65e.png")
-  st.info('자치구별 종합 순위 입니다.', icon="ℹ️")
-  
-# 데이터 출처 :
-
-
-
 
 
 # 서울시 주요 공원 현황 파일 불러오기
@@ -317,12 +297,19 @@ parksg_gu=(park_info.groupby(park_info['공원주소']).count())[["공원명"]].
 
 parksg_gu = parksg_gu.rename(columns={'공원명': '공원 수', '공원주소':'자치구'})
 
+fig_park = px.bar(parksg_gu, x=parksg_gu.index, y='공원 수', color='공원 수',
+             color_continuous_scale='Greens',
+             labels={'x': '자치구', 'y': '공원 수'},
+             height=600)
+fig_park.update_layout(
+    title='서울시 자치구별 공원 수',
+    xaxis_title='',
+    yaxis_title='공원 수',
+    font=dict(size=18)
+)
 
 
-
-
-"""# 종합 순위"""
-
+# 종합 순위 데이터 가공
 #@title 동물병원순위
 sph_sort["동물병원순위"] = sph_sort['사업장명'].rank(method='min', ascending=True)
 
@@ -388,17 +375,54 @@ result1 = result["합계"].sort_values(ascending=False)
 result1 = result["합계"].sort_values(ascending=False)
 result1_df = result1.to_frame(name='합계').reset_index().rename(columns={'index': '자치구'})
 
-# fig = px.bar(result1_df, x='C', y='합계', color='합계',
-#              color_continuous_scale='greys',
-#              labels={'C': '자치구', '합계': '종합순위'},
-#              height=600)
-# fig.update_layout(
-#     title='서울시 자치구별 반려동물 편의지수 종합순위',
-#     xaxis_title='',
-#     yaxis_title='편의지수 종합순위',
-#     font=dict(size=18)
-# )
-# fig.show()
+fig_syn = px.bar(result1_df, x='C', y='합계', color='합계',
+             color_continuous_scale='greys',
+             labels={'C': '자치구', '합계': '종합순위'},
+             height=600)
+fig_syn.update_layout(
+    title='서울시 자치구별 반려동물 편의지수 종합순위',
+    xaxis_title='',
+    yaxis_title='편의지수 종합순위',
+    font=dict(size=18)
+)
+
+
+col1,col2 = st.columns([1,1])
+# 공간을 2:3 으로 분할하여 col1과 col2라는 이름을 가진 컬럼을 생성
+
+with col1 :
+  # column 1 에 담을 내용
+  st.markdown("**:blue[동물 병원] 이용 순위**")
+  st.plotly_chart(fig_hos, theme="streamlit", use_container_width=True)
+  st.info('자치구별 동물 병원수 입니다.', icon="ℹ️")
+  
+  st.markdown("**:blue[동물 미용업체] 이용 순위**")
+  st.plotly_chart(fig_beauty, theme="streamlit", use_container_width=True)
+  st.info('자치구별 동물 미용업체수 입니다.', icon="ℹ️")
+
+  st.markdown("**:blue[반려동물 보유 비율]**")
+  st.plotly_chart(fig_tf, theme="streamlit", use_container_width=True)
+  st.info('자치구별 반려동물 보유비율입니다.', icon="ℹ️")
+
+
+
+with col2 :
+  # column 2 에 담을 내용
+  st.markdown("**:blue[동물 위탁시설] 이용 순위**")
+  st.plotly_chart(fig_con, theme="streamlit", use_container_width=True)
+  st.info('자치구별 동물 위탁시설 수 입니다.', icon="ℹ️")
+  
+  st.markdown("**:blue[공원 시설] 이용 순위**")
+  st.plotly_chart(fig_park, theme="streamlit", use_container_width=True)
+  st.info('자치구별 공원 시설 수 입니다.', icon="ℹ️")
+
+  st.markdown("**:blue[자치구별 종합] 순위**")
+  st.plotly_chart(fig_syn, theme="streamlit", use_container_width=True)
+  st.info('자치구별 종합 순위 입니다.', icon="ℹ️")
+  
+# 데이터 출처 :
+
+
 
 """## 방사형 차트"""
 
