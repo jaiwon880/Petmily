@@ -155,13 +155,8 @@ for col in cols1:
 pattern = '|'.join(sph_list)
 
 spb['소재지'] = spb['소재지'].str.extract(f'({pattern})', flags=re.IGNORECASE)
-
 spb2 = spb.groupby(spb["소재지"]).count()[["업체명"]]
-
 spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
-spb_sort = spb.groupby('소재지').count().reset_index()
-spb_sort = spb_sort.sort_values(by=['업체명'], ascending=False)
-
 
 fig_beauty = px.bar(spb_sort, x=spb_sort.index, y='업체명', color='업체명',
              color_continuous_scale='plotly3',
