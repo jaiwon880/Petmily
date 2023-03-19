@@ -416,7 +416,6 @@ with col2 :
 
 
 
-
 result2 = result[['동물병원순위', '동물미용업체순위', '위탁 업체 수',"보유 비율 순위","공원순위"]]
 result2
 
@@ -442,4 +441,7 @@ for i in range(len(address)):
         title=f"{address[i]} 종합 시각화 차트"
     )
     # 차트 출력
-fig_radar.show()
+    fig_radar.show()
+
+
+st.plotly_chart(fig_radar, theme="streamlit", use_container_width=True)
