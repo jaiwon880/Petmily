@@ -116,7 +116,6 @@ sph_sort2 = sph.groupby('소재지전체주소').count().reset_index()
 sph_sort3 = sph_sort2.sort_values(by=['사업장명'], ascending=False)
 
 
-
 fig = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
              color_continuous_scale='Blues',
              labels={'x': '자치구', 'y': '동물병원 수'},
@@ -127,7 +126,6 @@ fig.update_layout(
     yaxis_title='동물병원 수',
     font=dict(size=18)
 )
-fig.show()
 
 
 
@@ -261,6 +259,7 @@ with col1 :
 
   # lightgreyteal
   st.markdown("**:blue[반려동물 보유 비율]**")
+  st.plotly_chart(fig, theme="streamlit", use_container_width=True)
 #   st.altair_chart(bar_chart3, use_container_width=True)
   st.info('자치구별 반려동물 보유비율입니다.', icon="ℹ️")
 
