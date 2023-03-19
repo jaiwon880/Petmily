@@ -87,15 +87,16 @@ sph_sort3 = sph_sort2.sort_values(by=['사업장명'], ascending=False)
 
 
 # 동물병원 수 plotly 차트
-fig_hos = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='Blues',
+fig_hos = px.bar(sph_sort, x=sph_sort.index, y='사업장명', color='사업장명',
+             color_continuous_scale='Blues',
              labels={'x': '자치구', 'y': '동물병원 수'},
              height=400)
 fig_hos.update_layout(
     title='서울시 자치구별 동물병원 수',
+    showlegend=True,
     xaxis_title='',
     yaxis_title='동물병원 수',
     font=dict(size=3),
-    showlegend=True,
 )
 
 
