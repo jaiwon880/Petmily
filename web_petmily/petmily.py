@@ -98,7 +98,7 @@ fig_hos.update_layout(
     yaxis_title='동물병원 수',
     font=dict(size=3),
 )
-fig_hos.update_xaxes(tickfont_size=10, ticks="outside")
+fig_hos.update_xaxes(tickfont_size=9)
 
 
 # # 동물 병원 수 Altair 차트 
