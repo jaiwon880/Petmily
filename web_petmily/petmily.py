@@ -132,7 +132,7 @@ spb_sort = spb2.sort_values(by=['업체명'], ascending=False)
 fig_beauty = px.bar(spb_sort, x=spb_sort.index, y='업체명', color='업체명',
              color_continuous_scale='plotly3',
              labels={'x': '자치구', 'y': '애견 미용실 수'},
-             height=500)
+             height=400)
 fig_beauty.update_layout(
     title='서울시 자치구별 애견 미용실 수',
      showlegend=False,
