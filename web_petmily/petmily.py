@@ -238,7 +238,6 @@ dict2_keys_list = list(dict2.keys())
 dict2_values_list = list(dict2.values())
 dict2_keys_list2 = [x + "구" for x in dict2_keys_list]
 dict2_keys_list3 = [x.replace("서울특별시", "") for x in dict2_keys_list2]
-
 done_dict = dict(zip(dict2_keys_list3, dict2_values_list))
 
 # 정렬
@@ -247,8 +246,7 @@ sorted_done_dict = dict(sorted_items)
 
 spc_gu = pd.DataFrame(sorted_done_dict.items(), columns=['gu', 'data'])
 spc_gu['data'] = spc_gu['data'].astype('float')
-spc_gu = spc_gu.sort_values('data', inplace=True, ascending=False)
-spc_gu
+spc_gu.sort_values('data', inplace=True, ascending=False)
 
 # 반려동물 위탁 업체 수
 fig_con = px.bar(spc_gu, x='gu', y='data', color='data',
