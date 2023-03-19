@@ -95,7 +95,7 @@ fig_hos.update_layout(
     title='서울시 자치구별 동물병원 수',
     xaxis_title='',
     yaxis_title='동물병원 수',
-    font=dict(size=7.0),
+    font=dict(size=5),
     showlegend=False,
 )
 
