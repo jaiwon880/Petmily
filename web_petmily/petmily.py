@@ -5,8 +5,6 @@ import pandas as pd
 import numpy as np
 import re
 import copy
-# import plotly.graph_objects as go
-# import plotly.figure_factory as ff
 
 st.write(
     """
@@ -20,7 +18,6 @@ address = ["강남구", "강동구", "강북구", "강서구", "관악구", "광
 st.sidebar.title('자치구를 선택해주세요! 👇')
 selected_region = st.sidebar.selectbox("자치구 선택", address
 )
-
 
 
 # 서울시 동물병원 파일 불러오기
@@ -98,7 +95,7 @@ fig_hos.update_layout(
     title='서울시 자치구별 동물병원 수',
     xaxis_title='',
     yaxis_title='동물병원 수',
-    font=dict(size=18),
+    font=dict(size=10),
     showlegend=False,
 )
 
