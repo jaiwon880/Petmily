@@ -140,7 +140,7 @@ fig_beauty.update_layout(
     font=dict(size=3),
     showlegend=False,
 )
-fig_hos.update_xaxes(tickfont_size=7,tickangle=45)
+fig_beauty.update_xaxes(tickfont_size=7,tickangle=45)
 
 # # 애견 미용 Altair 차트
 # bar_chart2 = alt.Chart(spb_sort).mark_bar(
@@ -183,7 +183,7 @@ fig_tf.update_layout(
     font=dict(size=3),
     showlegend=False,
 )
-fig_hos.update_xaxes(tickfont_size=7,tickangle=45)
+fig_tf.update_xaxes(tickfont_size=7,tickangle=45)
 
 # 반려동물 보유 비율 Altair 차트
 # bar_chart3 = alt.Chart(pet_have_df).mark_bar(
@@ -230,7 +230,7 @@ fig_con.update_layout(
     font=dict(size=3),
     showlegend=False,
 )
-fig_hos.update_xaxes(tickfont_size=7,tickangle=45)
+fig_con.update_xaxes(tickfont_size=7,tickangle=45)
 
 # 반려동물 위탁 업체 수 Altair 차트
 # bar_chart3 = alt.Chart(spc_gu).mark_bar(
@@ -277,7 +277,7 @@ fig_park.update_layout(
     font=dict(size=3),
     showlegend=False,
 )
-fig_hos.update_xaxes(tickfont_size=7,tickangle=45)
+fig_park.update_xaxes(tickfont_size=7,tickangle=45)
 
 
 # 종합 순위 데이터 가공
@@ -357,7 +357,7 @@ fig_syn.update_layout(
     font=dict(size=3),
     showlegend=False,
 )
-fig_hos.update_xaxes(tickfont_size=7,tickangle=45)
+fig_syn.update_xaxes(tickfont_size=7,tickangle=45)
 
 
 
