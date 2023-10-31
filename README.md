@@ -1,5 +1,6 @@
 ### 🔗 Deployment URL
-🔗 [Petmily](https://jaiwon880-petmily-web-petmilypetmily-jhjyis.streamlit.app/)
+배포 페이지 수정중
+~~🔗 [Petmily](https://jaiwon880-petmily-web-petmilypetmily-jhjyis.streamlit.app/)~~
 
 ### 📌 Summary
 2023.03.15 ~ 2023.03.16
