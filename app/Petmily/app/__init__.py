@@ -17,6 +17,6 @@ def app():
 if __name__ == '__main__':
     st.set_page_config(
         page_icon=":dog:",
-        page_title="펫밀리",
+        page_title="팻밀리",
         layout="wide")
     app()
